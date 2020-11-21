@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1605971633 source:/home/jean-noel/workspace/dev.cpp/pronounceable-pwd/main.cpp
+	<iostream>
+	"src/Password/Password.h"
+
+1605971363 source:/home/jean-noel/workspace/dev.cpp/pronounceable-pwd/src/Password/Password.cpp
+	"Password.h"
+
+1605981483 /home/jean-noel/workspace/dev.cpp/pronounceable-pwd/src/Password/Password.h
+	<string>
+	<iostream>
+	<ctime>
+	<cstdlib>
+
