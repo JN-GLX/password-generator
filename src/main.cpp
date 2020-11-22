@@ -1,5 +1,5 @@
 #include <iostream>
-#include "src/Password/Password.h"
+#include "Password/Password.h"
 using namespace std;
 
 int main()

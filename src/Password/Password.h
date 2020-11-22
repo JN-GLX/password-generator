@@ -11,7 +11,7 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-
+#include <cmath>
 #ifndef SRC_PASSWORD_H_
 #define SRC_PASSWORD_H_
 

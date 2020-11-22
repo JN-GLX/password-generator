@@ -53,10 +53,29 @@ std::string Password::createBasePwd()
 std::string Password::generatePwd(int length)
 {
     std::string password = "";
-    if (length >= MIN_LENGTH_PWD)
+    int nbPass = 0; /*!< Nombre de passes */
+    int modulo = 0; /*!< Pour stocker le nombre de caractères à supprimer */
+
+    modulo = length % MIN_LENGTH_PWD;
+    /*!< Calcul du nombre de passes nécessaire pour générer le mot de passe de longueur length */
+    if (modulo == 0) // Multiples de MIN_LENGTH_PWD
     {
-        password = createBasePwd();
+        nbPass = length / MIN_LENGTH_PWD;
     }
+    else
+    {
+        nbPass = abs(length / MIN_LENGTH_PWD) + 1;
+    }
+
+    for (int cpt = 0; cpt < nbPass; ++cpt)
+    {
+        password += createBasePwd();
+    }
+
+    /*!< Si la longueur n'est pas un multiple de MIN_LENGTH_PWD (modulo > 0),
+     * on retire le nombre de caractères nécessaires
+     */
+    password.erase(length-1, modulo);
 
     return password;
 }

@@ -31,4 +31,11 @@
 *.out
 *.app
 
-./Debug
+/Debug
+/build
+*.save
+*.mk
+makefile
+*.cbp
+*.depend
+*.log
