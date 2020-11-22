@@ -73,7 +73,7 @@ std::string Password::generatePwd(int length)
     /*!< Si la longueur n'est pas un multiple de MIN_LENGTH_PWD (modulo > 0),
      * on retire le nombre de caractères nécessaires
      */
-    password.erase(length-1, MIN_LENGTH_PWD * nbPass - length);
+    password.erase(length, MIN_LENGTH_PWD * nbPass - length);
 
     return password;
 }
