@@ -65,6 +65,10 @@ public:
      */
     std::string generatePwd(int length);
 
+public:
+    /*! Longueur minimale du mot de passe */
+    static const int MIN_LENGTH_PWD = 9;
+
 private:
     /*! Listes de caractères pour le générateur */
     static constexpr const char* CONSONANTS = "bcdfghjklmnpqrstvwzx";
@@ -73,8 +77,6 @@ private:
     static constexpr const char* UPPER_VOWELS = "AEIOUY";
     static constexpr const char* PUNCTUATION = ".,?;:!_-";
     static constexpr const char* SPECIALS = "()[]={}#+&*%@$<>";
-    /*! Longueur minimale du mot de passe */
-    static const int MIN_LENGTH_PWD = 9;
 };
 
 #endif /* SRC_PASSWORD_H_ */
