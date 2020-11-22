@@ -26,6 +26,7 @@ std::string Password::createBasePwd()
     vowels += UPPER_VOWELS;
     std::string specials = PUNCTUATION;
     specials += SPECIALS;
+    int position[2];
 
 /*!< Génération de 2 séquences consonne-voyelle-consonne */
     for(int cpt = 0; cpt < 2; ++cpt)
@@ -40,7 +41,15 @@ std::string Password::createBasePwd()
 /*!< Ajout de 2 caractères spéciaux */
     for (int cpt = 0; cpt < 2; ++cpt)
     {
-        password += specials[rand() % specials.length()];
+        position[cpt] = rand() % specials.length();
+        if (cpt > 0) /*!< Si c'est le deuxième caractère */
+        {
+            while (position[cpt] == position[cpt-1]) /*!< On ne veut pas que ce soit le même que le premier */
+            {
+                position[cpt] = rand() % specials.length();
+            }
+        }
+        password += specials[position[cpt]];
     }
     return password;
 
