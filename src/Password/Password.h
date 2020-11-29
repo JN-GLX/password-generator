@@ -53,7 +53,7 @@ public:
      *
      * \return mot de passe prononçable
      */
-    std::string createBasePwd();
+    static std::string createBasePwd();
 
     /*!
      * \brief Génération d'un mot de passe d'une longueur donnée.

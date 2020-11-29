@@ -12,11 +12,11 @@ Password::Password() {
 }
 
 Password::~Password() {
-    // TODO Auto-generated destructor stub
+
 }
 
 std::string Password::createBasePwd() {
-    std::string password = "";
+    std::string password;
     std::string consonants = CONSONANTS;
     consonants += UPPER_CONSONANTS;
     std::string vowels = VOWELS;
