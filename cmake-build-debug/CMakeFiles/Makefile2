@@ -55,10 +55,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/129/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /var/lib/snapd/snap/clion/135/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/129/bin/cmake/linux/bin/cmake -E rm -f
+RM = /var/lib/snapd/snap/clion/135/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -94,12 +94,12 @@ clean: CMakeFiles/pronounceable_pwd.dir/clean
 CMakeFiles/pronounceable_pwd.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pronounceable_pwd.dir/build.make CMakeFiles/pronounceable_pwd.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pronounceable_pwd.dir/build.make CMakeFiles/pronounceable_pwd.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jean-noel/workspace/dev.cpp/pronounceable-pwd/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target pronounceable_pwd"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jean-noel/workspace/dev.cpp/pronounceable-pwd/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5 "Built target pronounceable_pwd"
 .PHONY : CMakeFiles/pronounceable_pwd.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/pronounceable_pwd.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jean-noel/workspace/dev.cpp/pronounceable-pwd/cmake-build-debug/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jean-noel/workspace/dev.cpp/pronounceable-pwd/cmake-build-debug/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/pronounceable_pwd.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jean-noel/workspace/dev.cpp/pronounceable-pwd/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/pronounceable_pwd.dir/rule
