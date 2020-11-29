@@ -12,6 +12,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <cmath>
+#include <random>
 #ifndef SRC_PASSWORD_H_
 #define SRC_PASSWORD_H_
 
@@ -53,7 +54,7 @@ public:
      *
      * \return mot de passe prononçable
      */
-    static std::string createBasePwd();
+    std::string createBasePwd();
 
     /*!
      * \brief Génération d'un mot de passe d'une longueur donnée.
@@ -77,6 +78,7 @@ private:
     static constexpr const char* UPPER_VOWELS = "AEIOUY";
     static constexpr const char* PUNCTUATION = ".,?;:!_-";
     static constexpr const char* SPECIALS = "()[]={}#+&*%@$<>";
+    std::default_random_engine rdEngine;
 };
 
 #endif /* SRC_PASSWORD_H_ */

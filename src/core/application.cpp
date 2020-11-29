@@ -4,7 +4,7 @@ Application::Application() : m_pwdLength(9), m_nbPwd(1), m_argCount(0)
 {
     //ctor
     m_passwd = new Password;
-}
+ }
 
 Application::~Application()
 {
@@ -15,6 +15,7 @@ Application::~Application()
 bool Application::readArguments(int argc, char **argv)
 {
     int option = getopt(argc, argv, "hl:n:");
+    char * pEnd;
 
     while (option != -1) {
         switch (option) {
@@ -23,20 +24,18 @@ bool Application::readArguments(int argc, char **argv)
                 displayHelp(argv[0]);
                 return false;
             case 'l':
-                m_pwdLength = atoi(optarg);
+                m_pwdLength = strtol(optarg, &pEnd, 10);
                 if (m_pwdLength == 0) {
                     m_pwdLength = Password::MIN_LENGTH_PWD;
                 } else {
                     if (!checkPwdLength(m_pwdLength)) {
-                        m_pwdLength = askForPwdLength();
-                    } else {
                         displayErrorLength();
-                        return false;
+                        m_pwdLength = askForPwdLength();
                     }
                 }
                 break;
             case 'n':
-                m_nbPwd = atoi(optarg);
+                m_nbPwd = strtol(optarg, &pEnd, 10);
                 if (m_nbPwd == 0) {
                     m_nbPwd = 1;
                 }
@@ -86,7 +85,6 @@ int Application::askForPwdLength() {
 
 void Application::runGenerator() {
     // Initialisation du générateur de nombre aléatoires
-    srand(time(0));
 
     for (int i = 0; i < m_nbPwd; ++i) {
         m_listPwd.push_back(m_passwd->generatePwd(m_pwdLength));
