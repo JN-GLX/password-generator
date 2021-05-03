@@ -39,3 +39,24 @@ makefile
 *.cbp
 *.depend
 *.log
+
+.vscode/
+.project
+.cproject
+.settings
+.idea/
+
+# Cmake
+cmake-build-debug-coverage/
+cmake-build-release/
+cmake-build-debug/pronounceable_pwd
+cmake-build-debug/CMakeFiles/pronounceable_pwd.dir/CXX.includecache
+cmake-build-debug/CMakeFiles/pronounceable_pwd.dir/depend.internal
+cmake-build-debug-coverage/cmake_install.cmake
+cmake-build-debug-coverage/CMakeCache.txt
+cmake-build-debug-coverage/pronounceable_pwd
+cmake-build-debug-coverage/CMakeFiles/clion-environment.txt
+cmake-build-debug-coverage/CMakeFiles/clion-log.txt
+cmake-build-debug-coverage/CMakeFiles/cmake.check_cache
+cmake-build-debug-coverage/CMakeFiles/CMakeDirectoryInformation.cmake
+cmake-build-debug-coverage/CMakeFiles/feature_tests.bin
