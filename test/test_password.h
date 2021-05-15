@@ -30,12 +30,12 @@ public:
     void setUp();
     void tearDown();
 
-    TEST_DECL(min_length);
-//    TEST_DECL(generate_length);
-//    TEST_DECL(two_vowels);
-//    TEST_DECL(four_consonants);
-//    TEST_DECL(has_digit);
-//    TEST_DECL(has_two_specials);
+    TEST_DECL(has_min_length);
+    TEST_DECL(has_given_length);
+    TEST_DECL(has_two_vowels);
+    TEST_DECL(has_four_consonants);
+    TEST_DECL(has_digit);
+    TEST_DECL(has_two_specials);
 
 };
 
