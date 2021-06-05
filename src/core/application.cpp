@@ -26,7 +26,7 @@ bool Application::readArguments(int argc, char **argv)
             case 'l':
                 m_pwdLength = strtol(optarg, &pEnd, 10);
                 if (m_pwdLength == 0) {
-                    m_pwdLength = Password::MIN_LENGTH_PWD;
+                    m_pwdLength = Password::has_min_length_PWD;
                 } else {
                     if (!checkPwdLength(m_pwdLength)) {
                         displayErrorLength();
@@ -47,7 +47,7 @@ bool Application::readArguments(int argc, char **argv)
 }
 bool Application::checkPwdLength(int pwdLength)
 {
-    if ( pwdLength < Password::MIN_LENGTH_PWD)
+    if ( pwdLength < Password::has_min_length_PWD)
     {
         return false;
     }
@@ -55,7 +55,7 @@ bool Application::checkPwdLength(int pwdLength)
 }
 
 void Application::displayErrorLength() {
-    std::cout << "La longueur du mot de passe doit être au minimum de " << Password::MIN_LENGTH_PWD
+    std::cout << "La longueur du mot de passe doit être au minimum de " << Password::has_min_length_PWD
               << " caractères." << std::endl;
 }
 

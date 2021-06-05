@@ -68,7 +68,7 @@ public:
 
 public:
     /*! Longueur minimale du mot de passe */
-    static const int MIN_LENGTH_PWD = 9;
+    static const int has_min_length_PWD = 9;
 
 private:
     /*! Listes de caractères pour le générateur */
