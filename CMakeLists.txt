@@ -13,6 +13,5 @@ add_executable(pronounceable_pwd
         src/core/application.h
         src/Password/Password.cpp
         src/Password/Password.h
-        src/Password/Password_test.cpp
         src/main.cpp
         version.h)
