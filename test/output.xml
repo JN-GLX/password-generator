@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding='ISO-8859-1' standalone='yes' ?>
+<TestRun>
+  <FailedTests></FailedTests>
+  <SuccessfulTests>
+    <Test id="1">
+      <Name>test_has_min_length</Name>
+    </Test>
+    <Test id="2">
+      <Name>test_has_given_length</Name>
+    </Test>
+    <Test id="3">
+      <Name>test_has_two_vowels</Name>
+    </Test>
+    <Test id="4">
+      <Name>test_has_four_consonants</Name>
+    </Test>
+    <Test id="5">
+      <Name>test_has_digit</Name>
+    </Test>
+    <Test id="6">
+      <Name>test_has_two_specials</Name>
+    </Test>
+  </SuccessfulTests>
+  <Statistics>
+    <Tests>6</Tests>
+    <FailuresTotal>0</FailuresTotal>
+    <Errors>0</Errors>
+    <Failures>0</Failures>
+  </Statistics>
+</TestRun>
