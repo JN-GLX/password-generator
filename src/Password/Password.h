@@ -13,6 +13,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <random>
+#include <chrono>
 #ifndef SRC_PASSWORD_H_
 #define SRC_PASSWORD_H_
 
@@ -78,7 +79,7 @@ private:
     static constexpr const char* UPPER_VOWELS = "AEIOUY";
     static constexpr const char* PUNCTUATION = ".,?;:!_-";
     static constexpr const char* SPECIALS = "()[]={}#+&*%@$<>";
-    std::default_random_engine rdEngine;
+    
 };
 
 #endif /* SRC_PASSWORD_H_ */

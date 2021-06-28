@@ -15,6 +15,9 @@ Password::~Password() {
 }
 
 std::string Password::createBasePwd() {
+
+    std::default_random_engine rdEngine;
+
     std::string password;
     std::string consonants = CONSONANTS;
     consonants += UPPER_CONSONANTS;
@@ -23,24 +26,27 @@ std::string Password::createBasePwd() {
     std::string specials = PUNCTUATION;
     specials += SPECIALS;
     int position[2];
-
-
-    std::uniform_int_distribution<int> consDis(1, consonants.length());
-    std::uniform_int_distribution<int> vowDis(1, vowels.length());
+   
+    rdEngine.seed(std::chrono::system_clock::now().time_since_epoch().count());
+    std::uniform_int_distribution<int> consDis(1, consonants.length()-1);
+    std::uniform_int_distribution<int> vowDis(1, vowels.length()-1);
 
 /*!< Génération de 2 séquences consonne-voyelle-consonne */
-    for (int cpt = 0; cpt < 2; ++cpt) {
-        password += consonants[consDis(rdEngine)];
-        password += vowels[vowDis(rdEngine)];
-        password += consonants[consDis(rdEngine)];
-    }
+    password += consonants[consDis(rdEngine)];
+    password += vowels[vowDis(rdEngine)];
+    password += consonants[consDis(rdEngine)];
+
+    password += consonants[consDis(rdEngine)];
+    password += vowels[vowDis(rdEngine)];
+    password += consonants[consDis(rdEngine)];
+
 /*!< Ajout d'un chiffre aléatoire de 0 à 9 */
-    std::uniform_int_distribution<int> intDis(1, 9);
+    std::uniform_int_distribution<int> intDis(0, 9);
     password += std::to_string(intDis(rdEngine));
 
 
 /*!< Ajout de 2 caractères spéciaux */
-    std::uniform_int_distribution<int> specDis(1, specials.length());
+    std::uniform_int_distribution<int> specDis(1, specials.length()-1);
     for (int cpt = 0; cpt < 2; ++cpt) {
         position[cpt] = specDis(rdEngine);
         if (cpt > 0) /*!< Si c'est le deuxième caractère */
@@ -63,6 +69,7 @@ std::string Password::createBasePwd() {
   */
 std::string Password::generatePwd(int length) {
     std::string password;
+    std::string basePwd = "";
     int nbPass; /*!< Nombre de passes */
 
     /*!< Calcul du nombre de passes nécessaire pour générer le mot de passe de longueur length */
@@ -70,7 +77,12 @@ std::string Password::generatePwd(int length) {
              static_cast<int>(std::round(floor(length / has_min_length_PWD))) + 1;
 
     for (int cpt = 0; cpt < nbPass; ++cpt) {
-        password += createBasePwd();
+        while (basePwd.length() < 9)
+        {
+            basePwd = createBasePwd();
+        }
+        password += basePwd;
+        basePwd = "";
     }
 
     /*!< Si la longueur n'est pas un multiple de has_min_length_PWD (modulo > 0),
