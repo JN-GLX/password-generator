@@ -8,6 +8,8 @@
 #include "Password.h"
 
 Password::Password() {
+    
+     rdEngine.seed(std::chrono::system_clock::now().time_since_epoch().count());
 }
 
 Password::~Password() {
@@ -16,7 +18,6 @@ Password::~Password() {
 
 std::string Password::createBasePwd() {
 
-    std::default_random_engine rdEngine;
 
     std::string password;
     std::string consonants = CONSONANTS;
@@ -27,7 +28,7 @@ std::string Password::createBasePwd() {
     specials += SPECIALS;
     int position[2];
    
-    rdEngine.seed(std::chrono::system_clock::now().time_since_epoch().count());
+   
     std::uniform_int_distribution<int> consDis(1, consonants.length()-1);
     std::uniform_int_distribution<int> vowDis(1, vowels.length()-1);
 

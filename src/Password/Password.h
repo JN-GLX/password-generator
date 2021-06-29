@@ -70,7 +70,7 @@ public:
 public:
     /*! Longueur minimale du mot de passe */
     static const int has_min_length_PWD = 9;
-
+    std::default_random_engine rdEngine;
 private:
     /*! Listes de caractères pour le générateur */
     static constexpr const char* CONSONANTS = "bcdfghjklmnpqrstvwzx";
@@ -79,6 +79,7 @@ private:
     static constexpr const char* UPPER_VOWELS = "AEIOUY";
     static constexpr const char* PUNCTUATION = ".,?;:!_-";
     static constexpr const char* SPECIALS = "()[]={}#+&*%@$<>";
+    
     
 };
 
