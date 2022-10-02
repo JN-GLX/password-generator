@@ -89,6 +89,9 @@ protected:
      */
     static int askForPwdLength();
 
+    void getPwdLengthFromOptArgs();
+    void getNumberPasswordsFromOptArgs();
+
 public:
 
 private:
