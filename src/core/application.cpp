@@ -24,27 +24,48 @@ bool Application::readArguments(int argc, char **argv)
                 displayHelp(argv[0]);
                 return false;
             case 'l':
-                m_pwdLength = strtol(optarg, &pEnd, 10);
-                if (m_pwdLength == 0) {
-                    m_pwdLength = Password::has_min_length_PWD;
-                } else {
-                    if (!checkPwdLength(m_pwdLength)) {
-                        displayErrorLength();
-                        m_pwdLength = askForPwdLength();
-                    }
-                }
+                getPwdLengthFromOptArgs();
                 break;
             case 'n':
-                m_nbPwd = strtol(optarg, &pEnd, 10);
-                if (m_nbPwd == 0) {
-                    m_nbPwd = 1;
-                }
+                getNumberPasswordsFromOptArgs();
                 break;
         }
         option = getopt(argc, argv, "hl:n:");
     }
     return true;
 }
+
+void Application::getPwdLengthFromOptArgs()
+{
+    char * pEnd;
+    int argPwdLength;
+
+    argPwdLength = strtol(optarg, &pEnd, 10);
+    if (argPwdLength == 0) {
+        m_pwdLength = Password::has_min_length_PWD;
+    } else {
+        if (checkPwdLength(argPwdLength)) {
+            m_pwdLength = argPwdLength;
+        } else {
+            displayErrorLength();
+            m_pwdLength = askForPwdLength();
+        }
+    }
+}
+
+void Application::getNumberPasswordsFromOptArgs()
+{
+    char * pEnd;
+    int argNumberPasswords;
+
+    argNumberPasswords = strtol(optarg, &pEnd, 10);
+    if (argNumberPasswords == 0) {
+        m_nbPwd = 1;
+    } else {
+        m_nbPwd = argNumberPasswords;
+    }    
+}
+
 bool Application::checkPwdLength(int pwdLength)
 {
     if ( pwdLength < Password::has_min_length_PWD)
@@ -77,6 +98,7 @@ int Application::askForPwdLength() {
         if (!checkPwdLength(pwdLength))
         {
             displayErrorLength();
+            pwdLength = -1;
         }
     } while (pwdLength == 0);
 
