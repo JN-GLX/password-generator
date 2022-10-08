@@ -18,49 +18,20 @@ Password::~Password() {
 
 std::string Password::createBasePwd() {
 
-
     std::string password;
-    std::string consonants = CONSONANTS;
-    consonants += UPPER_CONSONANTS;
-    std::string vowels = VOWELS;
-    vowels += UPPER_VOWELS;
     std::string specials = PUNCTUATION;
     specials += SPECIALS;
-    int position[2];
-   
-   
-    std::uniform_int_distribution<int> consDis(1, consonants.length()-1);
-    std::uniform_int_distribution<int> vowDis(1, vowels.length()-1);
+    int position[2]; 
 
 /*!< Génération de 2 séquences consonne-voyelle-consonne */
-    password += consonants[consDis(rdEngine)];
-    password += vowels[vowDis(rdEngine)];
-    password += consonants[consDis(rdEngine)];
-
-    password += consonants[consDis(rdEngine)];
-    password += vowels[vowDis(rdEngine)];
-    password += consonants[consDis(rdEngine)];
+    password = generateTwoLettersSequence();
 
 /*!< Ajout d'un chiffre aléatoire de 0 à 9 */
-    std::uniform_int_distribution<int> intDis(0, 9);
-    password += std::to_string(intDis(rdEngine));
-
+    password += getRandomDigit();
 
 /*!< Ajout de 2 caractères spéciaux */
-    std::uniform_int_distribution<int> specDis(1, specials.length()-1);
-    for (int cpt = 0; cpt < 2; ++cpt) {
-        position[cpt] = specDis(rdEngine);
-        if (cpt > 0) /*!< Si c'est le deuxième caractère */
-        {
-            while (position[cpt] == position[cpt - 1]) /*!< On ne veut pas que ce soit le même que le premier */
-            {
-                position[cpt] = specDis(rdEngine);
-            }
-        }
-        password += specials[position[cpt]];
-    }
+    password += getTwoRandomSpecialsChars();
     return password;
-
 }
 
 /** @brief Implémentation de la méthode generatePwd
@@ -92,4 +63,53 @@ std::string Password::generatePwd(int length) {
     password.erase(length, has_min_length_PWD * nbPass - length);
 
     return password;
+}
+
+std::string Password::generateTwoLettersSequence() {
+    std::string lettersSequence;
+    std::string consonants = CONSONANTS;
+    consonants += UPPER_CONSONANTS;
+    std::string vowels = VOWELS;
+    vowels += UPPER_VOWELS;
+
+    std::uniform_int_distribution<int> consDis(1, consonants.length()-1);
+    std::uniform_int_distribution<int> vowDis(1, vowels.length()-1);
+
+/*!< Génération de 2 séquences consonne-voyelle-consonne */
+    for (int cpt= 0; cpt < 2; ++cpt) {
+        lettersSequence += consonants[consDis(rdEngine)];
+        lettersSequence += vowels[vowDis(rdEngine)];
+        lettersSequence += consonants[consDis(rdEngine)];
+    }
+
+    return lettersSequence;
+}
+
+std::string Password::getRandomDigit() {
+
+    std::uniform_int_distribution<int> intDis(0, 9);
+    return std::to_string(intDis(rdEngine));
+
+}
+
+std::string Password::getTwoRandomSpecialsChars() {
+    std::string specialsSequence;
+    std::string specials = PUNCTUATION;
+    specials += SPECIALS;
+    int position[2]; 
+
+/*!< Ajout de 2 caractères spéciaux */
+    std::uniform_int_distribution<int> specDis(1, specials.length()-1);
+    for (int cpt = 0; cpt < 2; ++cpt) {
+        position[cpt] = specDis(rdEngine);
+        if (cpt > 0) /*!< Si c'est le deuxième caractère */
+        {
+            while (position[cpt] == position[cpt - 1]) /*!< On ne veut pas que ce soit le même que le premier */
+            {
+                position[cpt] = specDis(rdEngine);
+            }
+        }
+        specialsSequence += specials[position[cpt]];
+    }
+    return specialsSequence;
 }

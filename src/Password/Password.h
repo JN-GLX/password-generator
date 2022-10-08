@@ -80,7 +80,9 @@ private:
     static constexpr const char* PUNCTUATION = ".,?;:!_-";
     static constexpr const char* SPECIALS = "()[]={}#+&*%@$<>";
     
-    
+    std::string generateTwoLettersSequence();
+    std::string getRandomDigit();
+    std::string getTwoRandomSpecialsChars();
 };
 
 #endif /* SRC_PASSWORD_H_ */

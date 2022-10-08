@@ -107,6 +107,7 @@ void TestFixture::test_has_two_specials() {
     CPPUNIT_ASSERT_EQUAL(2, nbSpecials);
 }
 
+
 CppUnit::TestSuite *make_suite() {
     CppUnit::TestSuite *suite = new CppUnit::TestSuite(CLASS_NAME_STRING);
     cout << "=============================================" << endl;
