@@ -133,11 +133,12 @@ int main(int argc, char *argv[]) {
     runner.setOutputter(new CppUnit::CompilerOutputter(&runner.result(), cout));
     
     // Exécute tous les tests
-    runner.run();
+    bool test_result;
+    test_result = runner.run("", false, true, true);
 
     ofstream xml_out(OUTPUT_XML_FILE);
     xml_outputter = new CppUnit::XmlOutputter(&runner.result(), xml_out);
     xml_outputter->write();
     xml_out.close();
-
+    return !test_result;
 }

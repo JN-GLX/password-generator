@@ -10,6 +10,10 @@ include_directories(src)
 include_directories(src/core)
 include_directories(src/Password)
 
+add_subdirectory(test)
+
+enable_testing()
+
 add_executable(pwgen
         src/core/application.cpp
         src/core/application.h
