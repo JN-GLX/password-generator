@@ -70,12 +70,14 @@ public:
      */
     std::string generatePwd(int length);
 
-    std::string generateTwoLettersSequence();
+    std::string generateLettersSequence();
     std::string getRandomVowel();
     std::string getRandomConsonant();
     std::string getRandomDigit();
     std::string getTwoRandomSpecialsChars();
+    std::string getRandomSpecial();
     std::string getUpperString(std::string lowerString);
+    std::string getRandomCharFromString(std::string sourceString);
 
 public:
     /*! Longueur minimale du mot de passe */

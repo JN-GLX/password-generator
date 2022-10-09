@@ -6,9 +6,10 @@
  */
 
 #include "Password.h"
+#include "helpers.h"
 
 Password::Password() {
-    
+
      rdEngine.seed(std::chrono::system_clock::now().time_since_epoch().count());
 }
 
@@ -19,12 +20,9 @@ Password::~Password() {
 std::string Password::createBasePwd() {
 
     std::string password;
-    std::string specials = PUNCTUATION;
-    specials += SPECIALS;
-    int position[2]; 
 
 /*!< Génération de 2 séquences consonne-voyelle-consonne */
-    password = generateTwoLettersSequence();
+    repeat(2, [&] { password += generateLettersSequence(); });
 
 /*!< Ajout d'un chiffre aléatoire de 0 à 9 */
     password += getRandomDigit();
@@ -65,45 +63,25 @@ std::string Password::generatePwd(int length) {
     return password;
 }
 
-std::string Password::generateTwoLettersSequence() {
+std::string Password::generateLettersSequence() {
     std::string lettersSequence;
 
-/*!< Génération de 2 séquences consonne-voyelle-consonne */
-    for (int cpt= 0; cpt < 2; ++cpt) {
-        lettersSequence += getRandomConsonant();
-        lettersSequence += getRandomVowel();
-        lettersSequence += getRandomConsonant();
-    }
+    lettersSequence += getRandomConsonant();
+    lettersSequence += getRandomVowel();
+    lettersSequence += getRandomConsonant();
 
     return lettersSequence;
 }
 
 std::string Password::getRandomDigit() {
-
     std::uniform_int_distribution<int> intDis(0, 9);
     return std::to_string(intDis(rdEngine));
-
 }
 
 std::string Password::getTwoRandomSpecialsChars() {
     std::string specialsSequence;
-    std::string specials = PUNCTUATION;
-    specials += SPECIALS;
-    int position[2]; 
 
-/*!< Ajout de 2 caractères spéciaux */
-    std::uniform_int_distribution<int> specDis(1, specials.length()-1);
-    for (int cpt = 0; cpt < 2; ++cpt) {
-        position[cpt] = specDis(rdEngine);
-        if (cpt > 0) /*!< Si c'est le deuxième caractère */
-        {
-            while (position[cpt] == position[cpt - 1]) /*!< On ne veut pas que ce soit le même que le premier */
-            {
-                position[cpt] = specDis(rdEngine);
-            }
-        }
-        specialsSequence += specials[position[cpt]];
-    }
+    repeat(2,[&] {specialsSequence += getRandomSpecial();});
     return specialsSequence;
 }
 
@@ -111,26 +89,34 @@ std::string Password::getRandomConsonant() {
     std::string consonants = CONSONANTS;
     consonants += getUpperString(consonants);
 
-    std::uniform_int_distribution<int> consDis(1, consonants.length()-1);
-    std::string randomConsonant;
-    randomConsonant = consonants[consDis(rdEngine)];
-    
-    return randomConsonant;
+    return getRandomCharFromString(consonants);
 }
 
 std::string Password::getRandomVowel() {
     std::string vowels = VOWELS;
     vowels += getUpperString(vowels);
 
-    std::uniform_int_distribution<int> vowDis(1, vowels.length()-1);
-    std::string randomVowel;
-    randomVowel = vowels[vowDis(rdEngine)];
-    return randomVowel;
+    return getRandomCharFromString(vowels);
+}
+
+std::string Password::getRandomSpecial() {
+    std::string specials = PUNCTUATION;
+    specials += SPECIALS;
+
+    return getRandomCharFromString(specials);
 }
 
 std::string Password::getUpperString(std::string lowerString) {
     std::string upperString = lowerString;
-    std::transform(upperString.begin(), upperString.end(), upperString.begin(), ::toupper);   
+    std::transform(upperString.begin(), upperString.end(), upperString.begin(), ::toupper);
 
     return upperString;
+}
+
+std::string Password::getRandomCharFromString(std::string sourceString) {
+    std::uniform_int_distribution<int> charDistribution(1, sourceString.length()-1);
+    std::string randomChar;
+    randomChar = sourceString[charDistribution(rdEngine)];
+
+    return randomChar;
 }

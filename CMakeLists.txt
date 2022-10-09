@@ -17,6 +17,8 @@ enable_testing()
 add_executable(pwgen
         src/core/application.cpp
         src/core/application.h
+        src/core/helpers.h
+        src/core/helpers.cpp
         src/Password/Password.cpp
         src/Password/Password.h
         src/main.cpp
