@@ -107,7 +107,20 @@ void TestFixture::test_has_two_specials() {
     CPPUNIT_ASSERT_EQUAL(2, nbSpecials);
 }
 
+void TestFixture::test_two_random_consonant_are_different() {
+    string firstConsonant = pwd.getRandomConsonant();
+    string secondConsonant = pwd.getRandomConsonant();
 
+    CPPUNIT_ASSERT(firstConsonant != secondConsonant);
+}
+
+void TestFixture::test_string_is_upper() {
+    string lowerString = "abcdef";
+    string upperString = "ABCDEF";
+
+    CPPUNIT_ASSERT(upperString == pwd.getUpperString(lowerString));
+}
+    
 CppUnit::TestSuite *make_suite() {
     CppUnit::TestSuite *suite = new CppUnit::TestSuite(CLASS_NAME_STRING);
     cout << "=============================================" << endl;
@@ -120,6 +133,8 @@ CppUnit::TestSuite *make_suite() {
     TEST_ADD(has_four_consonants);
     TEST_ADD(has_digit);
     TEST_ADD(has_two_specials);
+    TEST_ADD(two_random_consonant_are_different);
+    TEST_ADD(string_is_upper);
 
     return suite;
 }

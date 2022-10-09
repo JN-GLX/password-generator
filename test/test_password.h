@@ -36,6 +36,9 @@ public:
     TEST_DECL(has_four_consonants);
     TEST_DECL(has_digit);
     TEST_DECL(has_two_specials);
+    TEST_DECL(two_random_consonant_are_different);
+    TEST_DECL(string_is_upper);
+
 
 };
 

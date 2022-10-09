@@ -62,3 +62,4 @@ cmake-build-debug-coverage/CMakeFiles/CMakeDirectoryInformation.cmake
 cmake-build-debug-coverage/CMakeFiles/feature_tests.bin
 test/test_password
 test/output.xml
+output.xml

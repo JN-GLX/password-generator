@@ -67,19 +67,12 @@ std::string Password::generatePwd(int length) {
 
 std::string Password::generateTwoLettersSequence() {
     std::string lettersSequence;
-    std::string consonants = CONSONANTS;
-    consonants += UPPER_CONSONANTS;
-    std::string vowels = VOWELS;
-    vowels += UPPER_VOWELS;
-
-    std::uniform_int_distribution<int> consDis(1, consonants.length()-1);
-    std::uniform_int_distribution<int> vowDis(1, vowels.length()-1);
 
 /*!< Génération de 2 séquences consonne-voyelle-consonne */
     for (int cpt= 0; cpt < 2; ++cpt) {
-        lettersSequence += consonants[consDis(rdEngine)];
-        lettersSequence += vowels[vowDis(rdEngine)];
-        lettersSequence += consonants[consDis(rdEngine)];
+        lettersSequence += getRandomConsonant();
+        lettersSequence += getRandomVowel();
+        lettersSequence += getRandomConsonant();
     }
 
     return lettersSequence;
@@ -112,4 +105,32 @@ std::string Password::getTwoRandomSpecialsChars() {
         specialsSequence += specials[position[cpt]];
     }
     return specialsSequence;
+}
+
+std::string Password::getRandomConsonant() {
+    std::string consonants = CONSONANTS;
+    consonants += getUpperString(consonants);
+
+    std::uniform_int_distribution<int> consDis(1, consonants.length()-1);
+    std::string randomConsonant;
+    randomConsonant = consonants[consDis(rdEngine)];
+    
+    return randomConsonant;
+}
+
+std::string Password::getRandomVowel() {
+    std::string vowels = VOWELS;
+    vowels += getUpperString(vowels);
+
+    std::uniform_int_distribution<int> vowDis(1, vowels.length()-1);
+    std::string randomVowel;
+    randomVowel = vowels[vowDis(rdEngine)];
+    return randomVowel;
+}
+
+std::string Password::getUpperString(std::string lowerString) {
+    std::string upperString = lowerString;
+    std::transform(upperString.begin(), upperString.end(), upperString.begin(), ::toupper);   
+
+    return upperString;
 }
