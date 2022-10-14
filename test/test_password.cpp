@@ -90,3 +90,10 @@ TEST_F(PasswordTest, StringIsUpper) {
 
     EXPECT_EQ(upperString, pwd.getUpperString(lowerString));
 }
+
+TEST_F(PasswordTest, TwoPasswordsAreDifferent) {
+    string firstPassword = pwd.createBasePwd();
+    string secondPassword = pwd.createBasePwd();
+
+    EXPECT_NE(firstPassword, secondPassword);
+}
