@@ -95,4 +95,6 @@ private:
 
 };
 
+int computeNumberOfPasses(int length);
+
 #endif /* SRC_PASSWORD_H_ */

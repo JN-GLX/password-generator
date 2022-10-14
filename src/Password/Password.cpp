@@ -17,6 +17,25 @@ Password::~Password() {
 
 }
 
+std::string Password::generatePwd(int length) {
+    std::string password;
+    std::string basePwd = "";
+    int numberOfPasses; 
+
+    numberOfPasses = computeNumberOfPasses(length);
+
+    for (int cpt = 0; cpt < numberOfPasses; ++cpt) {
+        password += createBasePwd();
+    }
+
+    /*!< Si la longueur n'est pas un multiple de has_min_length_PWD (modulo > 0),
+     * on retire le nombre de caractères nécessaires
+     */
+    password.erase(length, MINIMUM_PASSWORD_LENGTH * numberOfPasses - length);
+
+    return password;
+}
+
 std::string Password::createBasePwd() {
 
     std::string password;
@@ -24,42 +43,10 @@ std::string Password::createBasePwd() {
 /*!< Génération de 2 séquences consonne-voyelle-consonne */
     repeat(2, [&] { password += generateLettersSequence(); });
 
-/*!< Ajout d'un chiffre aléatoire de 0 à 9 */
     password += getRandomDigit();
 
-/*!< Ajout de 2 caractères spéciaux */
     password += getTwoRandomSpecialsChars();
-    return password;
-}
-
-/** @brief Implémentation de la méthode generatePwd
-  *
-  * \param length : longueur du mot de passe
-  * \return mot de passe prononçable de longueur *length*
-  */
-std::string Password::generatePwd(int length) {
-    std::string password;
-    std::string basePwd = "";
-    int nbPass; /*!< Nombre de passes */
-
-    /*!< Calcul du nombre de passes nécessaire pour générer le mot de passe de longueur length */
-    nbPass = length % MINIMUM_PASSWORD_LENGTH == 0 ? length / MINIMUM_PASSWORD_LENGTH :
-             static_cast<int>(std::round(floor(length / MINIMUM_PASSWORD_LENGTH))) + 1;
-
-    for (int cpt = 0; cpt < nbPass; ++cpt) {
-        while (basePwd.length() < 9)
-        {
-            basePwd = createBasePwd();
-        }
-        password += basePwd;
-        basePwd = "";
-    }
-
-    /*!< Si la longueur n'est pas un multiple de has_min_length_PWD (modulo > 0),
-     * on retire le nombre de caractères nécessaires
-     */
-    password.erase(length, MINIMUM_PASSWORD_LENGTH * nbPass - length);
-
+    
     return password;
 }
 
@@ -119,4 +106,15 @@ std::string Password::getRandomCharFromString(std::string sourceString) {
     randomChar = sourceString[charDistribution(rdEngine)];
 
     return randomChar;
+}
+
+int computeNumberOfPasses(int length) {
+    int numberOfPasses = 0;
+
+    if (length % Password::MINIMUM_PASSWORD_LENGTH == 0)
+        numberOfPasses = length / Password::MINIMUM_PASSWORD_LENGTH;
+    else
+        numberOfPasses = static_cast<int>(std::round(floor(length / Password::MINIMUM_PASSWORD_LENGTH))) + 1;
+
+    return numberOfPasses;
 }
