@@ -43,8 +43,8 @@ std::string Password::generatePwd(int length) {
     int nbPass; /*!< Nombre de passes */
 
     /*!< Calcul du nombre de passes nécessaire pour générer le mot de passe de longueur length */
-    nbPass = length % has_min_length_PWD == 0 ? length / has_min_length_PWD :
-             static_cast<int>(std::round(floor(length / has_min_length_PWD))) + 1;
+    nbPass = length % MINIMUM_PASSWORD_LENGTH == 0 ? length / MINIMUM_PASSWORD_LENGTH :
+             static_cast<int>(std::round(floor(length / MINIMUM_PASSWORD_LENGTH))) + 1;
 
     for (int cpt = 0; cpt < nbPass; ++cpt) {
         while (basePwd.length() < 9)
@@ -58,7 +58,7 @@ std::string Password::generatePwd(int length) {
     /*!< Si la longueur n'est pas un multiple de has_min_length_PWD (modulo > 0),
      * on retire le nombre de caractères nécessaires
      */
-    password.erase(length, has_min_length_PWD * nbPass - length);
+    password.erase(length, MINIMUM_PASSWORD_LENGTH * nbPass - length);
 
     return password;
 }

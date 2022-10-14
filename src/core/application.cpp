@@ -42,7 +42,7 @@ void Application::getPwdLengthFromOptArgs()
 
     argPwdLength = strtol(optarg, &pEnd, 10);
     if (argPwdLength == 0) {
-        m_pwdLength = Password::has_min_length_PWD;
+        m_pwdLength = Password::MINIMUM_PASSWORD_LENGTH;
     } else {
         if (checkPwdLength(argPwdLength)) {
             m_pwdLength = argPwdLength;
@@ -68,7 +68,7 @@ void Application::getNumberPasswordsFromOptArgs()
 
 bool Application::checkPwdLength(int pwdLength)
 {
-    if ( pwdLength < Password::has_min_length_PWD)
+    if ( pwdLength < Password::MINIMUM_PASSWORD_LENGTH)
     {
         return false;
     }
@@ -76,7 +76,7 @@ bool Application::checkPwdLength(int pwdLength)
 }
 
 void Application::displayErrorLength() {
-    std::cout << "La longueur du mot de passe doit être au minimum de " << Password::has_min_length_PWD
+    std::cout << "La longueur du mot de passe doit être au minimum de " << Password::MINIMUM_PASSWORD_LENGTH
               << " caractères." << std::endl;
 }
 

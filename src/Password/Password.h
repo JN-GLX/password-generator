@@ -81,7 +81,7 @@ public:
 
 public:
     /*! Longueur minimale du mot de passe */
-    static const int has_min_length_PWD = 9;
+    static const int MINIMUM_PASSWORD_LENGTH = 9;
     std::default_random_engine rdEngine;
 
 private:

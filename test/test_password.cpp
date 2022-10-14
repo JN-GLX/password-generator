@@ -30,7 +30,7 @@ int countNbChar(const std::string& inputString, const std::string searchPattern)
 
 /**
  * @brief Teste que le mot de passe créé 
- * fait bien la longueur minimale par défaut (has_min_length_PWD)
+ * fait bien la longueur minimale par défaut (MINIMUM_PASSWORD_LENGTH)
  * 
  */
 TEST_F(PasswordTest, defaultMinimalLength) {
