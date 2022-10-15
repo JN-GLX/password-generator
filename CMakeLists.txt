@@ -3,7 +3,7 @@ project(pronounceable_pwd)
 
 set(CMAKE_CXX_STANDARD 11)
 SET(CMAKE_CXX_FLAGS "-g -O0 --coverage -fprofile-arcs -ftest-coverage")
-# set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_BUILD_TYPE Release)
 
 include_directories(.)
 include_directories(src)

@@ -5,7 +5,7 @@ include_directories(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Password"
 )
 
-add_executable(PasswordTest test_password.cpp 
+add_executable(PasswordTest PasswordTest.cpp 
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Password/Password.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Password/Password.h
 )

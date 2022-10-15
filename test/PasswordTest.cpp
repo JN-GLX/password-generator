@@ -5,7 +5,7 @@
  *      Author: jean-noel
  */
 
-#include "test_password.h"
+#include "PasswordTest.h"
 #include <algorithm>
 
 using namespace std;

@@ -1,5 +1,5 @@
-#ifndef TEST_PASSWORD_H
-#define TEST_PASSWORD_H
+#ifndef PASSWORDTEST_H
+#define PASSWORDTEST_H
 
 #include "gtest/gtest.h"
 #include "../src/Password/Password.h"
@@ -13,4 +13,4 @@ class PasswordTest : public ::testing::Test {
     }
     Password pwd;
 };
-#endif /* TEST_PASSWORD_H */
+#endif /* PASSWORDTEST_H */
