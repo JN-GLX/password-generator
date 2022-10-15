@@ -29,116 +29,71 @@ int countNbChar(const std::string& inputString, const std::string searchPattern)
 }
 
 /**
- * @brief Initialisation du test
- * Fonction appelée avant chaque test
- */
-void TestFixture::setUp() {
-    
-}
-
-void TestFixture::tearDown() {
-
-}
-
-/**
  * @brief Teste que le mot de passe créé 
- * fait bien la longueur minimale par défaut (has_min_length_PWD)
+ * fait bien la longueur minimale par défaut (MINIMUM_PASSWORD_LENGTH)
  * 
  */
-void TestFixture::test_has_min_length() {
+TEST_F(PasswordTest, defaultMinimalLength) {
     string password = pwd.createBasePwd();
 
-    CPPUNIT_ASSERT(password.length() == pwd.has_min_length_PWD);   
+    EXPECT_EQ(password.length(), 9);
 }
 
-/**
- * @brief Teste que le mot de passe généré est bien 
- * de la longueur demandée
- * 
- */
-void TestFixture::test_has_given_length(){
+TEST_F(PasswordTest, HasGivenLength) {
     int pwdLength = 15;
     string password = pwd.generatePwd(pwdLength);
 
-    CPPUNIT_ASSERT(pwdLength == password.length());    
+    EXPECT_EQ(password.length(), pwdLength);
 }
 
-/**
- * @brief Teste la présence de deux voyelles dans un mot de passe de 9 caractères.
- * 
- */
-void TestFixture::test_has_two_vowels() {
+TEST_F(PasswordTest, HasTwoVowels) {
     string password = pwd.createBasePwd();
     const string vowels ("aeiouyAEIOUY");
-    
     int nbVowels = countNbChar(password, vowels);
-    CPPUNIT_ASSERT_EQUAL(2, nbVowels);
+    EXPECT_EQ(nbVowels, 2);
 }
 
-/**
- * @brief Teste la présence de 4 consonnes dans un mot de passe de 9 caractères.
- * 
- */
-void TestFixture::test_has_four_consonants() {
+TEST_F(PasswordTest, HasFourConsonants) {
     string password = pwd.createBasePwd();
     const string consonants = "bcdfghjklmnpqrstvwzxBCDFGHJKLMNPQRSTVWZX";
-
     int nbConsonants = countNbChar(password, consonants);
-    CPPUNIT_ASSERT_EQUAL(4, nbConsonants);
+
+    EXPECT_EQ(nbConsonants, 4);
 }
 
-/**
- * @brief Teste la présence d'un chiffre dans un mot de passe de 9 caractères.
- * 
- */
-void TestFixture::test_has_digit() {
+TEST_F(PasswordTest, HasDigit) {
     string password = pwd.createBasePwd();
     const string digits ("0123456789");
-
     int nbDigits = countNbChar(password, digits);
-    CPPUNIT_ASSERT_EQUAL(1, nbDigits);
+
+    EXPECT_EQ(nbDigits, 1);
 }
 
-void TestFixture::test_has_two_specials() {
+TEST_F(PasswordTest, HasTwoSpecials) {
     string password = pwd.createBasePwd();
     const string specials (".,?;:!_-()[]={}#+&*%@$<>");
-
     int nbSpecials = countNbChar(password, specials);
-    CPPUNIT_ASSERT_EQUAL(2, nbSpecials);
+
+    EXPECT_EQ(nbSpecials, 2);
 }
 
-CppUnit::TestSuite *make_suite() {
-    CppUnit::TestSuite *suite = new CppUnit::TestSuite(CLASS_NAME_STRING);
-    cout << "=============================================" << endl;
-    cout << "TEST " << suite->getName() << " (" << __FILE__ << ")" << endl;
-    cout << "=============================================" << endl;
+TEST_F(PasswordTest, TwoRandomConsonantsAreDifferent) {
+    string firstConsonant = pwd.getRandomConsonant();
+    string secondConsonant = pwd.getRandomConsonant();
 
-    TEST_ADD(has_min_length);
-    TEST_ADD(has_given_length);  
-    TEST_ADD(has_two_vowels);
-    TEST_ADD(has_four_consonants);
-    TEST_ADD(has_digit);
-    TEST_ADD(has_two_specials);
-
-    return suite;
+    EXPECT_NE(firstConsonant, secondConsonant);
 }
 
-int main(int argc, char *argv[]) {
-    CppUnit::TextUi::TestRunner runner;
-    CppUnit::XmlOutputter *xml_outputter = NULL;
+TEST_F(PasswordTest, StringIsUpper) {
+    string lowerString = "abcdef";
+    string upperString = "ABCDEF";
 
-    CppUnit::TestSuite *suite = make_suite();
-    runner.addTest(suite);
+    EXPECT_EQ(upperString, pwd.getUpperString(lowerString));
+}
 
-    runner.setOutputter(new CppUnit::CompilerOutputter(&runner.result(), cout));
-    
-    // Exécute tous les tests
-    bool test_result;
-    test_result = runner.run("", false, true, true);
+TEST_F(PasswordTest, TwoPasswordsAreDifferent) {
+    string firstPassword = pwd.createBasePwd();
+    string secondPassword = pwd.createBasePwd();
 
-    ofstream xml_out(OUTPUT_XML_FILE);
-    xml_outputter = new CppUnit::XmlOutputter(&runner.result(), xml_out);
-    xml_outputter->write();
-    xml_out.close();
-    return !test_result;
+    EXPECT_NE(firstPassword, secondPassword);
 }

@@ -12,8 +12,11 @@
 #include <ctime>
 #include <cstdlib>
 #include <cmath>
+#include <cstring>
 #include <random>
 #include <chrono>
+#include <algorithm>
+
 #ifndef SRC_PASSWORD_H_
 #define SRC_PASSWORD_H_
 
@@ -67,10 +70,20 @@ public:
      */
     std::string generatePwd(int length);
 
+    std::string generateLettersSequence();
+    std::string getRandomVowel();
+    std::string getRandomConsonant();
+    std::string getRandomDigit();
+    std::string getTwoRandomSpecialsChars();
+    std::string getRandomSpecial();
+    std::string getUpperString(std::string lowerString);
+    std::string getRandomCharFromString(std::string sourceString);
+
 public:
     /*! Longueur minimale du mot de passe */
-    static const int has_min_length_PWD = 9;
+    static const int MINIMUM_PASSWORD_LENGTH = 9;
     std::default_random_engine rdEngine;
+
 private:
     /*! Listes de caractères pour le générateur */
     static constexpr const char* CONSONANTS = "bcdfghjklmnpqrstvwzx";
@@ -79,8 +92,9 @@ private:
     static constexpr const char* UPPER_VOWELS = "AEIOUY";
     static constexpr const char* PUNCTUATION = ".,?;:!_-";
     static constexpr const char* SPECIALS = "()[]={}#+&*%@$<>";
-    
-    
+
 };
+
+int computeNumberOfPasses(int length);
 
 #endif /* SRC_PASSWORD_H_ */
