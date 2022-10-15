@@ -28,33 +28,34 @@ int countNbChar(const std::string& inputString, const std::string searchPattern)
     });
 }
 
+
 /**
  * @brief Teste que le mot de passe créé 
  * fait bien la longueur minimale par défaut (MINIMUM_PASSWORD_LENGTH)
  * 
  */
 TEST_F(PasswordTest, defaultMinimalLength) {
-    string password = pwd.createBasePwd();
+    string password = pwd.generateMinLengthPassword();
 
     EXPECT_EQ(password.length(), 9);
 }
 
 TEST_F(PasswordTest, HasGivenLength) {
     int pwdLength = 15;
-    string password = pwd.generatePwd(pwdLength);
+    string password = pwd.generateLongPassword(pwdLength);
 
     EXPECT_EQ(password.length(), pwdLength);
 }
 
 TEST_F(PasswordTest, HasTwoVowels) {
-    string password = pwd.createBasePwd();
+    string password = pwd.generateMinLengthPassword();
     const string vowels ("aeiouyAEIOUY");
     int nbVowels = countNbChar(password, vowels);
     EXPECT_EQ(nbVowels, 2);
 }
 
 TEST_F(PasswordTest, HasFourConsonants) {
-    string password = pwd.createBasePwd();
+    string password = pwd.generateMinLengthPassword();
     const string consonants = "bcdfghjklmnpqrstvwzxBCDFGHJKLMNPQRSTVWZX";
     int nbConsonants = countNbChar(password, consonants);
 
@@ -62,7 +63,7 @@ TEST_F(PasswordTest, HasFourConsonants) {
 }
 
 TEST_F(PasswordTest, HasDigit) {
-    string password = pwd.createBasePwd();
+    string password = pwd.generateMinLengthPassword();
     const string digits ("0123456789");
     int nbDigits = countNbChar(password, digits);
 
@@ -70,7 +71,7 @@ TEST_F(PasswordTest, HasDigit) {
 }
 
 TEST_F(PasswordTest, HasTwoSpecials) {
-    string password = pwd.createBasePwd();
+    string password = pwd.generateMinLengthPassword();
     const string specials (".,?;:!_-()[]={}#+&*%@$<>");
     int nbSpecials = countNbChar(password, specials);
 
@@ -92,8 +93,8 @@ TEST_F(PasswordTest, StringIsUpper) {
 }
 
 TEST_F(PasswordTest, TwoPasswordsAreDifferent) {
-    string firstPassword = pwd.createBasePwd();
-    string secondPassword = pwd.createBasePwd();
+    string firstPassword = pwd.generateMinLengthPassword();
+    string secondPassword = pwd.generateMinLengthPassword();
 
     EXPECT_NE(firstPassword, secondPassword);
 }
