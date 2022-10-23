@@ -109,7 +109,7 @@ void Application::runGenerator() {
     // Initialisation du générateur de nombre aléatoires
 
     for (int i = 0; i < m_nbPwd; ++i) {
-        m_listPwd.push_back(m_passwd->generatePwd(m_pwdLength));
+        m_listPwd.push_back(m_passwd->generateLongPassword(m_pwdLength));
     }
 }
 

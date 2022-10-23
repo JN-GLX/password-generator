@@ -3,12 +3,13 @@ project(pronounceable_pwd)
 
 set(CMAKE_CXX_STANDARD 11)
 SET(CMAKE_CXX_FLAGS "-g -O0 --coverage -fprofile-arcs -ftest-coverage")
-# set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_BUILD_TYPE Release)
 
 include_directories(.)
 include_directories(src)
 include_directories(src/core)
 include_directories(src/Password)
+include_directories(src/Engine)
 
 add_subdirectory(test)
 
@@ -28,10 +29,12 @@ add_executable(pwgen
         src/core/helpers.cpp
         src/Password/Password.cpp
         src/Password/Password.h
+        src/Engine/Engine.cpp
+        src/Engine/Engine.h
         src/main.cpp
         version.h)
 
-target_include_directories(pwgen PUBLIC 
+target_include_directories(pwgen PUBLIC
                            "${PROJECT_BINARY_DIR}"
                            )
 

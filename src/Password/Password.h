@@ -58,7 +58,7 @@ public:
      *
      * \return mot de passe prononçable
      */
-    std::string createBasePwd();
+    std::string generateMinLengthPassword();
 
     /*!
      * \brief Génération d'un mot de passe d'une longueur donnée.
@@ -68,7 +68,7 @@ public:
      * \param length : longueur du mot de passe
      * \return mot de passe prononçable de longueur *length*
      */
-    std::string generatePwd(int length);
+    std::string generateLongPassword(int length);
 
     std::string generateLettersSequence();
     std::string getRandomVowel();

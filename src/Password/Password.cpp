@@ -17,15 +17,14 @@ Password::~Password() {
 
 }
 
-std::string Password::generatePwd(int length) {
+std::string Password::generateLongPassword(int length) {
     std::string password;
-    std::string basePwd = "";
     int numberOfPasses; 
 
     numberOfPasses = computeNumberOfPasses(length);
 
     for (int cpt = 0; cpt < numberOfPasses; ++cpt) {
-        password += createBasePwd();
+        password += generateMinLengthPassword();
     }
 
     /*!< Si la longueur n'est pas un multiple de has_min_length_PWD (modulo > 0),
@@ -36,7 +35,7 @@ std::string Password::generatePwd(int length) {
     return password;
 }
 
-std::string Password::createBasePwd() {
+std::string Password::generateMinLengthPassword() {
 
     std::string password;
 
