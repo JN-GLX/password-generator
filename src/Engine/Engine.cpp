@@ -32,9 +32,7 @@ std::string Engine::generatePassword(int passwordLength)
 
 std::string Engine::getRandomConsonants(int nbConsonants) 
 {
-    std::string sourceString = CONSONANTS;
-    sourceString += getUpperString(sourceString);
-
+    std::string sourceString = buildLowerUpperCharSequence(CONSONANTS);
     std::string randomConsonants = getRandomCharSequence(sourceString, nbConsonants);
 
     return randomConsonants;
@@ -42,9 +40,7 @@ std::string Engine::getRandomConsonants(int nbConsonants)
 
 std::string Engine::getRandomVowels(int nbVowels) 
 {
-    std::string sourceString = VOWELS;
-    sourceString += getUpperString(sourceString);
-
+    std::string sourceString = buildLowerUpperCharSequence(VOWELS);
     std::string randomVowels = getRandomCharSequence(sourceString, nbVowels);
 
     return randomVowels;

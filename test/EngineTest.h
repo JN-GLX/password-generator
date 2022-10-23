@@ -4,12 +4,9 @@
 #include "gtest/gtest.h"
 #include "../src/Engine/Engine.h"
 #include "../src/Engine/randomutils.h"
+#include "../src/core/helpers.h"
 
-const std::string VOWELS ("aeiouyAEIOUY");
-const std::string CONSONANTS ("bcdfghjklmnpqrstvwzxBCDFGHJKLMNPQRSTVWZX");
-const std::string DIGITS ("0123456789");
 const int MINIMAL_PASSWORD_LENGTH = 9;
-
 
 class EngineTest : public ::testing::Test {
     protected:
@@ -19,4 +16,5 @@ class EngineTest : public ::testing::Test {
         Engine passwordEngine;
         std::string password;
 };
+
 #endif

@@ -3,6 +3,7 @@
 
 using namespace std;
 using namespace RandomUtils;
+using namespace StringUtils;
 
 /**
  * @fn int countNbChar(const std::string& inputString, const std::string searchPattern)
@@ -30,12 +31,18 @@ TEST_F(EngineTest, HasGivenLength) {
 }
 
 TEST_F(EngineTest, HasVowel) {
-    int nbVowels = countNbChar(password, VOWELS);
+    std::string vowelsString = buildLowerUpperCharSequence(VOWELS);
+
+    int nbVowels = countNbChar(password, vowelsString);
+
     EXPECT_GE(nbVowels, 1);
 }
 
 TEST_F(EngineTest, HasConsonant) {
-    int nbConsonants = countNbChar(password, CONSONANTS);
+    std::string consonantsString = buildLowerUpperCharSequence(CONSONANTS);
+    
+    int nbConsonants = countNbChar(password, consonantsString);
+
     EXPECT_GE(nbConsonants, 1);
 }
 
@@ -47,6 +54,14 @@ TEST_F(EngineTest, HasDigit) {
 TEST_F(EngineTest, TwoPasswordsAreDifferent) {
     string otherPassword = passwordEngine.generatePassword(MINIMAL_PASSWORD_LENGTH);
     EXPECT_NE(password, otherPassword);
+}
+
+TEST_F(EngineTest, StringIsUpper) 
+{
+    string lowerString = "abcdef";
+    string upperString = "ABCDEF";
+
+    EXPECT_EQ(upperString, getUpperString(lowerString));
 }
 /*
 TEST_F(EngineTest, HasTwoVowels) {

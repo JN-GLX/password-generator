@@ -9,6 +9,11 @@ void repeat(unsigned times, F callback) {
 
 namespace StringUtils
 {
-    std:: string getUpperString(std::string lowerString);
+    static constexpr const char* CONSONANTS = "bcdfghjklmnpqrstvwzx";
+    static constexpr const char* VOWELS = "aeiouy";
+    static constexpr const char* DIGITS = "0123456789";
+
+    std::string getUpperString(std::string lowerString);
+    std::string buildLowerUpperCharSequence(std::string lowerString);
 }
 
