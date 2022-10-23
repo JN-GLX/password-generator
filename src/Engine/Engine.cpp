@@ -13,15 +13,30 @@ std::string Engine::generatePassword(int length) {
     std::string password = "";
 
     std::string sourceString = CONSONANTS;
-    sourceString += UPPER_CONSONANTS;
-    sourceString += VOWELS;
-    sourceString += UPPER_VOWELS;
+    sourceString += getUpperString(sourceString);
     
-    for(int count=0; count < length-1; count++)
+    std::uniform_int_distribution<int> nbConsonantsDistribution(1, length-2);
+    int nbConsonants = nbConsonantsDistribution(randomEngine);
+    for(int count = 0; count < nbConsonants; count++)
     {
         password += getRandomCharFromString(sourceString);
     }
-    password += getRandomCharFromString(DIGITS);
+
+    std::uniform_int_distribution<int> numberDistribution(1, length-nbConsonants);
+    int nbVowels = numberDistribution(randomEngine);
+    sourceString = VOWELS;
+    sourceString += getUpperString(sourceString);
+
+    for(int count =0; count < nbVowels; count++)
+    {
+        password += getRandomCharFromString(sourceString);
+    }
+
+    for(int count=0; count < length - (nbConsonants + nbVowels); count++)
+    {
+        password += getRandomCharFromString(DIGITS);
+    }
+    
 
     return password;
 }
