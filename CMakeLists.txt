@@ -9,6 +9,7 @@ include_directories(.)
 include_directories(src)
 include_directories(src/core)
 include_directories(src/Password)
+include_directories(src/Engine)
 
 add_subdirectory(test)
 
@@ -28,10 +29,12 @@ add_executable(pwgen
         src/core/helpers.cpp
         src/Password/Password.cpp
         src/Password/Password.h
+        src/Engine/Engine.cpp
+        src/Engine/Engine.h
         src/main.cpp
         version.h)
 
-target_include_directories(pwgen PUBLIC 
+target_include_directories(pwgen PUBLIC
                            "${PROJECT_BINARY_DIR}"
                            )
 
