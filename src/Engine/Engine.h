@@ -7,6 +7,7 @@
 #include <random>
 #include <chrono>
 #include <algorithm>
+#include "randomutils.h"
 
 class Engine
 {
@@ -23,11 +24,6 @@ private:
     std::string getRandomVowels(int nbVowels);
     std::string getRandomDigits(int nbDigits);
 
-    std::string getRandomCharSequence(std::string sourceString, int nbChars);
-    std::string getRandomCharFromString(std::string sourceString);
-    int getRandomNumber(int range);
-
-    std::default_random_engine randomEngine;
     static constexpr const char* CONSONANTS = "bcdfghjklmnpqrstvwzx";
     static constexpr const char* VOWELS = "aeiouy";
     static constexpr const char* DIGITS = "0123456789";

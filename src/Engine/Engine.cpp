@@ -1,9 +1,12 @@
 #include "Engine.h"
 #include "helpers.h"
 
+using namespace RandomUtils;
+using namespace StringUtils;
+
 Engine::Engine() 
 {
-    randomEngine.seed(std::chrono::system_clock::now().time_since_epoch().count());
+    initializeRandomEngine();
 }
 
 Engine::~Engine() 
@@ -51,32 +54,4 @@ std::string Engine::getRandomDigits(int nbDigits)
 {
     std::string randomDigits = getRandomCharSequence(DIGITS, nbDigits);
     return randomDigits;
-}
-
-std::string Engine::getRandomCharFromString(std::string sourceString) 
-{
-    std::uniform_int_distribution<int> charDistribution(1, sourceString.length()-1);
-    std::string randomChar;
-    
-    randomChar = sourceString[charDistribution(randomEngine)];
-
-    return randomChar;
-}
-
-int Engine::getRandomNumber(int range) 
-{
-    std::uniform_int_distribution<int> numberDistribution(1, range);
-    return numberDistribution(randomEngine);
-}
-
-std::string Engine::getRandomCharSequence(std::string sourceString, int nbChars) 
-{
-    std::string charSequence = "";
-    
-    for(int count = 0; count < nbChars; count++)
-    {
-        charSequence += getRandomCharFromString(sourceString);
-    }
-
-    return charSequence;
 }

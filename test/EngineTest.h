@@ -3,12 +3,11 @@
 
 #include "gtest/gtest.h"
 #include "../src/Engine/Engine.h"
+#include "../src/Engine/randomutils.h"
 
-using namespace std;
-
-const string VOWELS ("aeiouyAEIOUY");
-const string CONSONANTS ("bcdfghjklmnpqrstvwzxBCDFGHJKLMNPQRSTVWZX");
-const string DIGITS ("0123456789");
+const std::string VOWELS ("aeiouyAEIOUY");
+const std::string CONSONANTS ("bcdfghjklmnpqrstvwzxBCDFGHJKLMNPQRSTVWZX");
+const std::string DIGITS ("0123456789");
 const int MINIMAL_PASSWORD_LENGTH = 9;
 
 
@@ -18,6 +17,6 @@ class EngineTest : public ::testing::Test {
             password = passwordEngine.generatePassword(MINIMAL_PASSWORD_LENGTH);
         }
         Engine passwordEngine;
-        string password;
+        std::string password;
 };
 #endif

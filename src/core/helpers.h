@@ -7,4 +7,8 @@ void repeat(unsigned times, F callback) {
     while (times--) callback();
 }
 
-std:: string getUpperString(std::string lowerString);
+namespace StringUtils
+{
+    std:: string getUpperString(std::string lowerString);
+}
+
