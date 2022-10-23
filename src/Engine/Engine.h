@@ -17,7 +17,14 @@ public:
 
     std::string generatePassword(int length);
 
-
+private:
+    std::string getRandomCharFromString(std::string sourceString);
+    std::default_random_engine randomEngine;
+    static constexpr const char* CONSONANTS = "bcdfghjklmnpqrstvwzx";
+    static constexpr const char* UPPER_CONSONANTS = "BCDFGHJKLMNPQRSTVWZX";
+    static constexpr const char* VOWELS = "aeiouy";
+    static constexpr const char* UPPER_VOWELS = "AEIOUY";
+    static constexpr const char* DIGITS = "0123456789";
 };
 
 class PronouncableEngine : Engine {

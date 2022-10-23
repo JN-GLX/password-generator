@@ -21,9 +21,37 @@ int countNbChar(const std::string& inputString, const std::string searchPattern)
     });
 }
 
+TEST_F(EngineTest, HasGivenLength) {
+    int passwordLength = 15;
+    password = passwordEngine.generatePassword(passwordLength);
+
+    EXPECT_EQ(password.length(), passwordLength);
+}
+
+TEST_F(EngineTest, HasVowel) {
+    int nbVowels = countNbChar(password, VOWELS);
+    EXPECT_GE(nbVowels, 1);
+}
+
+TEST_F(EngineTest, HasConsonant) {
+    int nbConsonants = countNbChar(password, CONSONANTS);
+    EXPECT_GE(nbConsonants, 1);
+}
+
+TEST_F(EngineTest, HasDigit) {
+    int nbDigits = countNbChar(password, DIGITS);
+    EXPECT_GE(nbDigits, 1);
+}
+
+TEST_F(EngineTest, TwoPasswordsAreDifferent) {
+    string otherPassword = passwordEngine.generatePassword(MINIMAL_PASSWORD_LENGTH);
+    EXPECT_NE(password, otherPassword);
+}
+/*
 TEST_F(EngineTest, HasTwoVowels) {
     string password = passwordEngine.generatePassword();
     const string vowels ("aeiouyAEIOUY");
     int nbVowels = countNbChar(password, vowels);
     EXPECT_EQ(nbVowels, 2);
 }
+*/
