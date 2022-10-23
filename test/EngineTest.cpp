@@ -2,6 +2,7 @@
 #include "EngineTest.h"
 
 using namespace std;
+using namespace RandomUtils;
 
 /**
  * @fn int countNbChar(const std::string& inputString, const std::string searchPattern)
