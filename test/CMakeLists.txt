@@ -14,6 +14,7 @@ add_executable(PasswordTest PasswordTest.cpp
 add_executable(EngineTest EngineTest.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/Engine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/Engine.h
+               ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/AlphaNumEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/randomutils.h
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/randomutils.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/core/helpers.h

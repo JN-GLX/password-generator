@@ -23,32 +23,12 @@ int countNbChar(const std::string& inputString, const std::string searchPattern)
     });
 }
 
-TEST_F(EngineTest, HasGivenLength) {
+TEST_F(EngineTest, HasGivenLength)
+{
     int passwordLength = 15;
     password = passwordEngine.generatePassword(passwordLength);
 
-    EXPECT_EQ(password.length(), passwordLength);
-}
-
-TEST_F(EngineTest, HasVowel) {
-    std::string vowelsString = buildLowerUpperCharSequence(VOWELS);
-
-    int nbVowels = countNbChar(password, vowelsString);
-
-    EXPECT_GE(nbVowels, 1);
-}
-
-TEST_F(EngineTest, HasConsonant) {
-    std::string consonantsString = buildLowerUpperCharSequence(CONSONANTS);
-    
-    int nbConsonants = countNbChar(password, consonantsString);
-
-    EXPECT_GE(nbConsonants, 1);
-}
-
-TEST_F(EngineTest, HasDigit) {
-    int nbDigits = countNbChar(password, DIGITS);
-    EXPECT_GE(nbDigits, 1);
+    EXPECT_EQ(password.length(), passwordLength);    
 }
 
 TEST_F(EngineTest, TwoPasswordsAreDifferent) {
@@ -56,7 +36,40 @@ TEST_F(EngineTest, TwoPasswordsAreDifferent) {
     EXPECT_NE(password, otherPassword);
 }
 
-TEST_F(EngineTest, StringIsUpper) 
+TEST_F(AlphaNumEngineTest, HasGivenLength) {
+    int passwordLength = 15;
+    password = alphanumPasswordEngine.generatePassword(passwordLength);
+
+    EXPECT_EQ(password.length(), passwordLength);
+}
+
+TEST_F(AlphaNumEngineTest, HasVowel) {
+    std::string vowelsString = buildLowerUpperCharSequence(VOWELS);
+
+    int nbVowels = countNbChar(password, vowelsString);
+
+    EXPECT_GE(nbVowels, 1);
+}
+
+TEST_F(AlphaNumEngineTest, HasConsonant) {
+    std::string consonantsString = buildLowerUpperCharSequence(CONSONANTS);
+    
+    int nbConsonants = countNbChar(password, consonantsString);
+
+    EXPECT_GE(nbConsonants, 1);
+}
+
+TEST_F(AlphaNumEngineTest, HasDigit) {
+    int nbDigits = countNbChar(password, DIGITS);
+    EXPECT_GE(nbDigits, 1);
+}
+
+TEST_F(AlphaNumEngineTest, TwoPasswordsAreDifferent) {
+    string otherPassword = alphanumPasswordEngine.generatePassword(MINIMAL_PASSWORD_LENGTH);
+    EXPECT_NE(password, otherPassword);
+}
+
+TEST(StringsUtils, StringIsUpper) 
 {
     string lowerString = "abcdef";
     string upperString = "ABCDEF";

@@ -15,5 +15,6 @@ namespace StringUtils
 
     std::string getUpperString(std::string lowerString);
     std::string buildLowerUpperCharSequence(std::string lowerString);
+    std::string buildAsciiCharSequence(char firstAsciiChar, char lastAsciiChar);
 }
 

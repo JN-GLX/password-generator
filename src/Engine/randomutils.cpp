@@ -32,5 +32,4 @@ namespace RandomUtils
         randomChar = sourceString[charDistribution(randomEngine)];
         return randomChar;
     }
-
 }

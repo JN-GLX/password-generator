@@ -8,6 +8,7 @@
 #include <chrono>
 #include <algorithm>
 #include "randomutils.h"
+#include "helpers.h"
 
 class Engine
 {
@@ -18,11 +19,19 @@ public:
 
     std::string generatePassword(int length);
 
+protected:
+    std::string buildAsciiSequence(char firstAsciiChar, char lastAsciiChar);
+};
+
+class AlphaNumEngine : public Engine
+{
+public:
+    std::string generatePassword(int length);
     std::string getRandomConsonants(int nbConsonants);
     std::string getRandomVowels(int nbVowels);
     std::string getRandomDigits(int nbDigits);
 };
 
-class PronouncableEngine : Engine {
+class PronounceableEngine : Engine {
 
 };

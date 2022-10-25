@@ -14,4 +14,14 @@ namespace StringUtils
         std::string charSequence = lowerString + getUpperString(lowerString);
         return charSequence;
     }
+
+    std::string buildAsciiCharSequence(char firstAsciiChar, int lastAsciiChar)
+    {
+        std::string asciiCharSequence = "";
+        for (char asciiChar = firstAsciiChar; asciiChar <= lastAsciiChar; asciiChar++)
+        {
+            asciiCharSequence += asciiChar;
+        }
+        return asciiCharSequence;
+    }
 }
