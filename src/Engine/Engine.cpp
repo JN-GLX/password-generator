@@ -6,6 +6,7 @@ using namespace StringUtils;
 Engine::Engine() 
 {
     initializeRandomEngine();
+    defaultSourceString = buildAsciiSequence(DEFAULT_FIRST_ASCII_CHAR, DEFAULT_LAST_ASCII_CHAR);
 }
 
 Engine::~Engine() 
@@ -15,11 +16,7 @@ Engine::~Engine()
 
 std::string Engine::generatePassword(int passwordLength) 
 {
-    int firstAsciiChar = 33;
-    int lastAsciiChar = 126;
-
-    std::string sourceString = buildAsciiSequence(firstAsciiChar, lastAsciiChar);
-    std::string password = getRandomCharSequence(sourceString, passwordLength);
+    std::string password = getRandomCharSequence(defaultSourceString, passwordLength);
     return password;
 }
 

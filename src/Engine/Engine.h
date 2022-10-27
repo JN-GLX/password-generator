@@ -1,3 +1,5 @@
+#ifndef ENGINE_H
+#define ENGINE_H
 #include <string>
 #include <iostream>
 #include <ctime>
@@ -21,6 +23,8 @@ public:
 
 protected:
     std::string buildAsciiSequence(char firstAsciiChar, char lastAsciiChar);
+private:
+    std::string defaultSourceString;
 };
 
 class AlphaNumEngine : public Engine
@@ -35,3 +39,4 @@ public:
 class PronounceableEngine : Engine {
 
 };
+#endif
