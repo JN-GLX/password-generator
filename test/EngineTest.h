@@ -17,6 +17,15 @@ class EngineTest : public ::testing::Test {
         std::string password;
 };
 
+class StandardEngineTest : public ::testing::Test {
+    protected:
+        void SetUp() override {
+            password = passwordEngine.generatePassword(MINIMAL_PASSWORD_LENGTH);
+        }
+        StandardEngine passwordEngine;
+        std::string password;
+};
+
 class AlphaNumEngineTest : public ::testing::Test 
 {
     protected:

@@ -4,6 +4,16 @@
 using namespace RandomUtils;
 using namespace StringUtils;
 
+AlphaNumEngine::AlphaNumEngine(void) : Engine()
+{
+    return;
+}
+
+AlphaNumEngine::~AlphaNumEngine()
+{
+
+}
+
 std::string AlphaNumEngine::generatePassword(int passwordLength) 
 {
     std::string password = "";

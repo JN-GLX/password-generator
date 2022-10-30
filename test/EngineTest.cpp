@@ -23,7 +23,7 @@ int countNbChar(const std::string& inputString, const std::string searchPattern)
     });
 }
 
-TEST_F(EngineTest, HasGivenLength)
+TEST_F(StandardEngineTest, HasGivenLength)
 {
     int passwordLength = 15;
     password = passwordEngine.generatePassword(passwordLength);
@@ -31,7 +31,7 @@ TEST_F(EngineTest, HasGivenLength)
     EXPECT_EQ(password.length(), passwordLength);    
 }
 
-TEST_F(EngineTest, TwoPasswordsAreDifferent) {
+TEST_F(StandardEngineTest, TwoPasswordsAreDifferent) {
     string otherPassword = passwordEngine.generatePassword(MINIMAL_PASSWORD_LENGTH);
     EXPECT_NE(password, otherPassword);
 }
