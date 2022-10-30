@@ -16,14 +16,10 @@ class Engine
 {
 public:
     Engine();
-
+    virtual std::string generatePassword(int) const = 0;
     virtual ~Engine();
 
-    std::string generatePassword(int length);
-
 protected:
-    std::string buildAsciiSequence(char firstAsciiChar, char lastAsciiChar);
-private:
     std::string defaultSourceString;
 };
 
@@ -32,9 +28,9 @@ class StandardEngine : public Engine
 public:
     StandardEngine();
     virtual ~StandardEngine();
-    std::string generatePassword(int length);
+    std::string generatePassword(int length) const;
 protected:
-    std::string buildAsciiSequence(char firstAsciiChar, char lastAsciiChar);
+    std::string buildAsciiSequence(char firstAsciiChar, char lastAsciiChar) const;
 private:
     std::string defaultSourceString;
 };
@@ -46,11 +42,11 @@ public:
     AlphaNumEngine();
     virtual ~AlphaNumEngine();
 
-    std::string generatePassword(int length);
+    std::string generatePassword(int length) const;
 
-    std::string getRandomConsonants(int nbConsonants);
-    std::string getRandomVowels(int nbVowels);
-    std::string getRandomDigits(int nbDigits);
+    std::string getRandomConsonants(int nbConsonants) const;
+    std::string getRandomVowels(int nbVowels) const;
+    std::string getRandomDigits(int nbDigits) const;
 };
 
 class PronounceableEngine : Engine {

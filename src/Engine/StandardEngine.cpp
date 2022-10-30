@@ -15,13 +15,13 @@ StandardEngine::~StandardEngine()
 
 }
 
-std::string StandardEngine::generatePassword(int passwordLength) 
+std::string StandardEngine::generatePassword(int passwordLength) const
 {
     std::string password = getRandomCharSequence(defaultSourceString, passwordLength);
     return password;
 }
 
-std::string StandardEngine::buildAsciiSequence(char firstAsciiChar, char lastAsciiChar)
+std::string StandardEngine::buildAsciiSequence(char firstAsciiChar, char lastAsciiChar) const
 {
     std::string asciiCharSequence = "";
     for (char asciiChar = firstAsciiChar; asciiChar <= lastAsciiChar; asciiChar++)

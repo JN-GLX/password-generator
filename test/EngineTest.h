@@ -8,15 +8,6 @@
 
 const int MINIMAL_PASSWORD_LENGTH = 9;
 
-class EngineTest : public ::testing::Test {
-    protected:
-        void SetUp() override {
-            password = passwordEngine.generatePassword(MINIMAL_PASSWORD_LENGTH);
-        }
-        Engine passwordEngine;
-        std::string password;
-};
-
 class StandardEngineTest : public ::testing::Test {
     protected:
         void SetUp() override {

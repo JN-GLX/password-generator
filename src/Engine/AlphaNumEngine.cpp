@@ -14,7 +14,7 @@ AlphaNumEngine::~AlphaNumEngine()
 
 }
 
-std::string AlphaNumEngine::generatePassword(int passwordLength) 
+std::string AlphaNumEngine::generatePassword(int passwordLength) const
 {
     std::string password = "";
 
@@ -30,7 +30,7 @@ std::string AlphaNumEngine::generatePassword(int passwordLength)
     return password;
 }
 
-std::string AlphaNumEngine::getRandomConsonants(int nbConsonants) 
+std::string AlphaNumEngine::getRandomConsonants(int nbConsonants) const
 {
     std::string sourceString = buildLowerUpperCharSequence(CONSONANTS);
     std::string randomConsonants = getRandomCharSequence(sourceString, nbConsonants);
@@ -38,7 +38,7 @@ std::string AlphaNumEngine::getRandomConsonants(int nbConsonants)
     return randomConsonants;
 }
 
-std::string AlphaNumEngine::getRandomVowels(int nbVowels) 
+std::string AlphaNumEngine::getRandomVowels(int nbVowels) const
 {
     std::string sourceString = buildLowerUpperCharSequence(VOWELS);
     std::string randomVowels = getRandomCharSequence(sourceString, nbVowels);
@@ -46,7 +46,7 @@ std::string AlphaNumEngine::getRandomVowels(int nbVowels)
     return randomVowels;
 }
 
-std::string AlphaNumEngine::getRandomDigits(int nbDigits) 
+std::string AlphaNumEngine::getRandomDigits(int nbDigits) const
 {
     std::string randomDigits = getRandomCharSequence(DIGITS, nbDigits);
     return randomDigits;
