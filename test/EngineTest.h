@@ -27,4 +27,13 @@ class AlphaNumEngineTest : public ::testing::Test
         AlphaNumEngine alphanumPasswordEngine;
         std::string password;
 };
+
+class PronounceableEngineTest : public ::testing::Test {
+    protected:
+        void SetUp() override {
+            password = passwordEngine.generatePassword(MINIMAL_PASSWORD_LENGTH);
+        }
+        PronounceableEngine passwordEngine;
+        std::string password;
+};
 #endif

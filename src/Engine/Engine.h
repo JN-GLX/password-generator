@@ -49,7 +49,21 @@ public:
     std::string getRandomDigits(int nbDigits) const;
 };
 
-class PronounceableEngine : Engine {
+class PronounceableEngine : AlphaNumEngine
+{
+public:
+    PronounceableEngine();
+    virtual ~PronounceableEngine();
 
+    std::string generatePassword(int length) const;
+
+    std::string getRandomSpecials(int nbSpecials) const;
+    std::string generateLettersSequence() const;
+
+protected:
+    int computeNumberOfPasses(int length) const;
+
+private: 
+    static const int MINIMUM_PASSWORD_LENGTH = 9;
 };
 #endif

@@ -69,18 +69,64 @@ TEST_F(AlphaNumEngineTest, TwoPasswordsAreDifferent) {
     EXPECT_NE(password, otherPassword);
 }
 
-TEST(StringsUtils, StringIsUpper) 
+TEST(StringsUtilsTest, StringIsUpper) 
 {
     string lowerString = "abcdef";
     string upperString = "ABCDEF";
 
     EXPECT_EQ(upperString, getUpperString(lowerString));
 }
-/*
-TEST_F(EngineTest, HasTwoVowels) {
-    string password = passwordEngine.generatePassword();
+
+TEST_F(PronounceableEngineTest, HasTwoVowels) {
     const string vowels ("aeiouyAEIOUY");
     int nbVowels = countNbChar(password, vowels);
     EXPECT_EQ(nbVowels, 2);
 }
-*/
+
+TEST_F(PronounceableEngineTest, HasFourConsonants) {
+    const string consonants = "bcdfghjklmnpqrstvwzxBCDFGHJKLMNPQRSTVWZX";
+    int nbConsonants = countNbChar(password, consonants);
+
+    EXPECT_EQ(nbConsonants, 4);
+}
+
+TEST_F(PronounceableEngineTest, HasDigit) {
+    const string digits ("0123456789");
+    int nbDigits = countNbChar(password, digits);
+
+    EXPECT_EQ(nbDigits, 1);
+}
+
+TEST_F(PronounceableEngineTest, HasTwoSpecials) {
+    const string specials (".,?;:!_-()[]={}#+&*%@$<>");
+    int nbSpecials = countNbChar(password, specials);
+
+    EXPECT_EQ(nbSpecials, 2);
+}
+
+TEST_F(PronounceableEngineTest, HasLetterSequence)
+{
+    char firstChar = password[0];
+    char secondChar = password[1];
+    char thirdChar = password[2];
+    const string consonants = "bcdfghjklmnpqrstvwzxBCDFGHJKLMNPQRSTVWZX";    
+    const string vowels ("aeiouyAEIOUY");
+
+    EXPECT_NE(consonants.find(firstChar), string::npos);
+    EXPECT_NE(vowels.find(secondChar), string::npos);
+    EXPECT_NE(consonants.find(thirdChar), string::npos);
+}
+
+TEST_F(PronounceableEngineTest, TwoPasswordsAreDifferent) {
+    string firstPassword = passwordEngine.generatePassword(MINIMAL_PASSWORD_LENGTH);
+    string secondPassword = passwordEngine.generatePassword(MINIMAL_PASSWORD_LENGTH);
+
+    EXPECT_NE(firstPassword, secondPassword);
+}
+
+TEST_F(PronounceableEngineTest, HasGivenLength) {
+    int passwordLength = 15;
+    password = passwordEngine.generatePassword(passwordLength);
+
+    EXPECT_EQ(password.length(), passwordLength);
+}

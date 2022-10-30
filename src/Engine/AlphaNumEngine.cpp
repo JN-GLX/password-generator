@@ -6,6 +6,7 @@ using namespace StringUtils;
 
 AlphaNumEngine::AlphaNumEngine(void) : Engine()
 {
+    initializeRandomEngine();
     return;
 }
 
