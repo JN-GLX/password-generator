@@ -18,8 +18,8 @@ namespace StringUtils
     static const int DEFAULT_FIRST_ASCII_CHAR = 33;
     static const int DEFAULT_LAST_ASCII_CHAR = 126;
 
-    std::string getUpperString(std::string lowerString);
-    std::string buildLowerUpperCharSequence(std::string lowerString);
-    std::string buildAsciiCharSequence(char firstAsciiChar, char lastAsciiChar);
+    std::string getUpperString(const std::string& lowerString);
+    std::string buildLowerUpperCharSequence(const std::string& lowerString);
+    std::string buildAsciiCharSequence(const char& firstAsciiChar, const char& lastAsciiChar);
 }
 #endif

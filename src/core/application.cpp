@@ -15,7 +15,6 @@ Application::~Application()
 bool Application::readArguments(int argc, char **argv)
 {
     int option = getopt(argc, argv, "hl:n:");
-    char * pEnd;
 
     while (option != -1) {
         switch (option) {

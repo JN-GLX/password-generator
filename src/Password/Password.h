@@ -17,6 +17,9 @@
 #include <chrono>
 #include <algorithm>
 
+#include "helpers.h"
+#include "randomutils.h"
+
 #ifndef SRC_PASSWORD_H_
 #define SRC_PASSWORD_H_
 
@@ -29,18 +32,12 @@
 class Password
 {
 public:
-    /*!
-     * \brief Constructeur
-     *
-     * Constructeur de la classe Password
-     *
-     */
     Password();
-    /*!
-     * \brief Destructeur
-     *
-     * Destructeur de la classe Password;
-     */
+    Password(const Password& pwd)
+    {
+
+    }
+    
     virtual ~Password();
 
     /*!
@@ -76,8 +73,10 @@ public:
     std::string getRandomDigit();
     std::string getTwoRandomSpecialsChars();
     std::string getRandomSpecial();
-    std::string getUpperString(std::string lowerString);
-    std::string getRandomCharFromString(std::string sourceString);
+/*  
+    std::string getUpperString(const std::string& lowerString);
+    std::string getRandomCharFromString(const std::string& sourceString);
+*/
 
 public:
     /*! Longueur minimale du mot de passe */

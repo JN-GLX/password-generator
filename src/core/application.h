@@ -19,18 +19,24 @@
 class Application
 {
     public:
-    /*!
-     * \brief Constructeur
-     *
-     * Constructeur de la classe Application
-     *
-     */
         Application();
-    /*!
-     * \brief Destructeur
-     *
-     * Destructeur de la classe Application;
-     */
+
+        Application(const Application& app) : m_argCount(app.m_argCount), m_listPwd(app.m_listPwd), \
+                                              m_nbPwd(app.m_nbPwd), m_pwdLength(app.m_pwdLength), m_passwd(0)
+        {
+            m_passwd = new Password(*(app.m_passwd));
+        }
+
+        Application& operator=(const Application& app)
+        {
+            m_argCount = app.m_argCount;
+            m_listPwd = app.m_listPwd;
+            m_nbPwd = app.m_nbPwd;
+            m_pwdLength = app.m_pwdLength;
+            m_passwd = app.m_passwd;
+            return *this;
+        }
+
         virtual ~Application();
     /*!
      * \fn readArguments
