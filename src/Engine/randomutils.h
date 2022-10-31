@@ -15,8 +15,8 @@ namespace RandomUtils
 {
     void initializeRandomEngine();
 
-    int getRandomNumber(int range);
-    std::string getRandomCharSequence(std::string sourceString, int nbChars);
-    std::string getRandomCharFromString(std::string sourceString);
+    int getRandomNumber(const int& range);
+    std::string getRandomCharSequence(const std::string& sourceString, const int& nbChars);
+    std::string getRandomCharFromString(const std::string& sourceString);
 }
 #endif /*RANDOMUTILS_H*/

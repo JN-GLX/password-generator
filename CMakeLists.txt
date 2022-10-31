@@ -31,8 +31,14 @@ add_executable(pwgen
         src/Password/Password.h
         src/Engine/Engine.cpp
         src/Engine/Engine.h
+        src/Engine/AlphaNumEngine.cpp
+        src/Engine/randomutils.h
+        src/Engine/randomutils.cpp
         src/main.cpp
         version.h)
+
+file(GLOB gcovinfo "*.gcda")
+list(REMOVE_ITEM gcovinfo)
 
 target_include_directories(pwgen PUBLIC
                            "${PROJECT_BINARY_DIR}"
