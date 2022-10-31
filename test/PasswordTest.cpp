@@ -9,6 +9,8 @@
 #include <algorithm>
 
 using namespace std;
+using namespace StringUtils;
+using namespace RandomUtils;
 
 /**
  * @fn int countNbChar(const std::string& inputString, const std::string searchPattern)
@@ -89,7 +91,7 @@ TEST_F(PasswordTest, StringIsUpper) {
     string lowerString = "abcdef";
     string upperString = "ABCDEF";
 
-    EXPECT_EQ(upperString, pwd.getUpperString(lowerString));
+    EXPECT_EQ(upperString, getUpperString(lowerString));
 }
 
 TEST_F(PasswordTest, TwoPasswordsAreDifferent) {

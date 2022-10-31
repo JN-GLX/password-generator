@@ -6,7 +6,9 @@
  */
 
 #include "Password.h"
-#include "helpers.h"
+
+using namespace StringUtils;
+using namespace RandomUtils;
 
 Password::Password() {
 
@@ -90,21 +92,6 @@ std::string Password::getRandomSpecial() {
     specials += SPECIALS;
 
     return getRandomCharFromString(specials);
-}
-
-std::string Password::getUpperString(std::string lowerString) {
-    std::string upperString = lowerString;
-    std::transform(upperString.begin(), upperString.end(), upperString.begin(), ::toupper);
-
-    return upperString;
-}
-
-std::string Password::getRandomCharFromString(std::string sourceString) {
-    std::uniform_int_distribution<int> charDistribution(1, sourceString.length()-1);
-    std::string randomChar;
-    randomChar = sourceString[charDistribution(rdEngine)];
-
-    return randomChar;
 }
 
 int computeNumberOfPasses(int length) {
