@@ -6,97 +6,43 @@
  */
 
 #include "PasswordTest.h"
-#include <algorithm>
 
 using namespace std;
-using namespace StringUtils;
-using namespace RandomUtils;
 
-/**
- * @fn int countNbChar(const std::string& inputString, const std::string searchPattern)
- * @brief Fonction pour compter le nombre de caractères présents dans la
- * chaîne 'inputString' appartenant au motif de recherche 'searchPattern'.
- * 
- * Utilise la fonction count_if de la STL avec comme prédicat une fonction lambda 
- * renvoyant 'true' quand un caractère de la chaîne est présent dans le motif.
- * @param[in] inputString La chaîne dans laquelle compter les caractères.
- * @param[in] searchPattern Le motif de recherche (voyelles, consonnes, chiffres,...).
- * @return Le nombre de caractères trouvés appartenant au motif.
- */
-int countNbChar(const std::string& inputString, const std::string searchPattern)
-{
-    return std::count_if(inputString.begin(), inputString.end(), [&](char c) {
-        return (searchPattern.find(c) == std::string::npos) ? false : true;
-    });
+TEST_F(PasswordTest, IsLengthCorrect) {
+    int pwdLength = 15;
+    pwd.setPasswordLength(pwdLength);
+
+    EXPECT_EQ(pwdLength, pwd.getPasswordLength());
 }
 
+TEST_F(PasswordTest, SetPasswordEngine) {
+    pwd.setPasswordEngine(EngineName::Alphanumerique);
 
-/**
- * @brief Teste que le mot de passe créé 
- * fait bien la longueur minimale par défaut (MINIMUM_PASSWORD_LENGTH)
- * 
- */
-TEST_F(PasswordTest, defaultMinimalLength) {
-    string password = pwd.generateMinLengthPassword();
+    EXPECT_EQ(pwd.getPasswordEngine(), EngineName::Alphanumerique);
+}
 
-    EXPECT_EQ(password.length(), 9);
+TEST_F(PasswordTest, GetPassword) {
+    pwd.generatePasswordWithEngine();
+    string password = pwd.getPassword();
+
+    EXPECT_GE(password.length(), 0);
 }
 
 TEST_F(PasswordTest, HasGivenLength) {
     int pwdLength = 15;
-    string password = pwd.generateLongPassword(pwdLength);
+    pwd.setPasswordLength(pwdLength);
+    pwd.generatePasswordWithEngine();
+    string password = pwd.getPassword();
 
     EXPECT_EQ(password.length(), pwdLength);
 }
 
-TEST_F(PasswordTest, HasTwoVowels) {
-    string password = pwd.generateMinLengthPassword();
-    const string vowels ("aeiouyAEIOUY");
-    int nbVowels = countNbChar(password, vowels);
-    EXPECT_EQ(nbVowels, 2);
-}
-
-TEST_F(PasswordTest, HasFourConsonants) {
-    string password = pwd.generateMinLengthPassword();
-    const string consonants = "bcdfghjklmnpqrstvwzxBCDFGHJKLMNPQRSTVWZX";
-    int nbConsonants = countNbChar(password, consonants);
-
-    EXPECT_EQ(nbConsonants, 4);
-}
-
-TEST_F(PasswordTest, HasDigit) {
-    string password = pwd.generateMinLengthPassword();
-    const string digits ("0123456789");
-    int nbDigits = countNbChar(password, digits);
-
-    EXPECT_EQ(nbDigits, 1);
-}
-
-TEST_F(PasswordTest, HasTwoSpecials) {
-    string password = pwd.generateMinLengthPassword();
-    const string specials (".,?;:!_-()[]={}#+&*%@$<>");
-    int nbSpecials = countNbChar(password, specials);
-
-    EXPECT_EQ(nbSpecials, 2);
-}
-
-TEST_F(PasswordTest, TwoRandomConsonantsAreDifferent) {
-    string firstConsonant = pwd.getRandomConsonant();
-    string secondConsonant = pwd.getRandomConsonant();
-
-    EXPECT_NE(firstConsonant, secondConsonant);
-}
-
-TEST_F(PasswordTest, StringIsUpper) {
-    string lowerString = "abcdef";
-    string upperString = "ABCDEF";
-
-    EXPECT_EQ(upperString, getUpperString(lowerString));
-}
-
 TEST_F(PasswordTest, TwoPasswordsAreDifferent) {
-    string firstPassword = pwd.generateMinLengthPassword();
-    string secondPassword = pwd.generateMinLengthPassword();
+    pwd.generatePasswordWithEngine();
+    string firstPassword = pwd.getPassword();
+    pwd.generatePasswordWithEngine();
+    string secondPassword = pwd.getPassword();
 
     EXPECT_NE(firstPassword, secondPassword);
 }
