@@ -23,6 +23,7 @@ Password::~Password()
 void Password::setPasswordEngine(EngineName selectedEngineName)
 {
     engineName = selectedEngineName;
+    passwordEngine = engineFactory->createEngine(engineName);
 }
 
 EngineName Password::getPasswordEngine()
@@ -37,19 +38,17 @@ void Password::setPasswordLength(int length)
 
 int Password::getPasswordLength()
 {
-    return passwordLength;    
+    return passwordLength;
 }
 
 void Password::generatePasswordWithEngine()
 {
-    Engine* passwordEngine = engineFactory->createEngine(engineName);
-    
     if ( passwordEngine == nullptr)
     {
         throw std::runtime_error("Moteur de génération non défini.");
         return;
     }
-    
+
     try
     {
         password = passwordEngine->generatePassword(passwordLength);

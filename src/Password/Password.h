@@ -1,9 +1,9 @@
 /*!
  * \file Password.h
- * \brief Générateur de mot de passe prononçable
+ * \brief Générateur de mot de passe
  * \author jn-glx
- * \date 21 nov. 2020
- * \version 0.1
+ * \date 2 nov. 2022
+ * \version 1.0
  *
  */
 
@@ -24,12 +24,6 @@
 #ifndef SRC_PASSWORD_H_
 #define SRC_PASSWORD_H_
 
-/*! \class Password Password.h "Définition".
- * \brief Classe représentant le mot de passe.
- *
- * La classe gère la génération d'un mot de passe
- *
- */
 class Password
 {
 public:
@@ -46,12 +40,12 @@ public:
     std::string getPassword();
     virtual ~Password();
 public:
-    /*! Longueur minimale du mot de passe */
     static const int MINIMUM_PASSWORD_LENGTH = 9;
 private:
     int passwordLength;
     std::string password;
     EngineName engineName;
     EngineFactory* engineFactory;
+    Engine *passwordEngine;
 };
 #endif /* SRC_PASSWORD_H_ */
