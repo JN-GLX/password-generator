@@ -42,7 +42,6 @@ public:
     std::string generatePassword(int length) const override;
 protected:
     std::string buildAsciiSequence(char firstAsciiChar, char lastAsciiChar) const;
-private:
     std::string defaultSourceString;
 };
 
@@ -70,10 +69,9 @@ public:
 
     std::string getRandomSpecials(int nbSpecials) const;
     std::string generateLettersSequence() const;
-
 protected:
     int computeNumberOfPasses(int length) const;
-
+    std::string defaultSourceString;
 private: 
     static const int MINIMUM_PASSWORD_LENGTH = 9;
 };
@@ -86,15 +84,15 @@ public:
         Engine *passwordEngine = nullptr;
         switch (engineName)
         {
-        case EngineName::Standard:
+        case EngineName::Standard: {
             passwordEngine = new StandardEngine();
-            break;
-        case EngineName::Alphanumerique:
+        }break;
+        case EngineName::Alphanumerique: {
             passwordEngine = new AlphaNumEngine();
-            break;
-        case EngineName::Prononçable:
+        }break;
+        case EngineName::Prononçable: {
             passwordEngine = new PronounceableEngine();
-            break;
+        }break;
         default:            
             break;
         }

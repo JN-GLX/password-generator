@@ -32,6 +32,8 @@ add_executable(pwgen
         src/Engine/Engine.cpp
         src/Engine/Engine.h
         src/Engine/AlphaNumEngine.cpp
+        src/Engine/StandardEngine.cpp
+        src/Engine/PronounceableEngine.cpp
         src/Engine/randomutils.h
         src/Engine/randomutils.cpp
         src/main.cpp
