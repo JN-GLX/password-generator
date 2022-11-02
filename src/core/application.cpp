@@ -1,18 +1,18 @@
 #include "application.h"
 
-Application::Application() : m_pwdLength(9), m_nbPwd(1), m_argCount(0)
+Application::Application() : passwordLength(9), numberOfPasswords(1)
 {
     //ctor
-    m_passwd = new Password;
+    passwordGenerator = new Password();
  }
 
 Application::~Application()
 {
     //dtor
-    delete m_passwd;
+    delete passwordGenerator;
 }
 
-bool Application::readArguments(int argc, char **argv)
+bool Application::readCommandLineArguments(int argc, char **argv)
 {
     int option = getopt(argc, argv, "hl:n:");
 
@@ -41,13 +41,13 @@ void Application::getPwdLengthFromOptArgs()
 
     argPwdLength = strtol(optarg, &pEnd, 10);
     if (argPwdLength == 0) {
-        m_pwdLength = Password::MINIMUM_PASSWORD_LENGTH;
+        setPasswordLength(Password::MINIMUM_PASSWORD_LENGTH);
     } else {
-        if (checkPwdLength(argPwdLength)) {
-            m_pwdLength = argPwdLength;
+        if (checkPasswordLength(argPwdLength)) {
+            setPasswordLength(argPwdLength);
         } else {
-            displayErrorLength();
-            m_pwdLength = askForPwdLength();
+            displayMessageErrorLength();
+            setPasswordLength(askForPasswordLength());
         }
     }
 }
@@ -59,13 +59,34 @@ void Application::getNumberPasswordsFromOptArgs()
 
     argNumberPasswords = strtol(optarg, &pEnd, 10);
     if (argNumberPasswords == 0) {
-        m_nbPwd = 1;
+        setNumberOfPasswords(1);
     } else {
-        m_nbPwd = argNumberPasswords;
+        setNumberOfPasswords(argNumberPasswords);
     }    
 }
 
-bool Application::checkPwdLength(int pwdLength)
+void Application::setNumberOfPasswords(int number)
+{
+    this->numberOfPasswords = number;
+}
+
+int Application::getNumberOfPasswords()
+{
+    return(this->numberOfPasswords);
+}
+
+void Application::setPasswordLength(int length)
+{
+    this->passwordLength = length;
+    passwordGenerator->setPasswordLength(this->passwordLength);
+}
+
+int Application::getPasswordLength()
+{
+    return(this->passwordLength);
+}
+
+bool Application::checkPasswordLength(int pwdLength)
 {
     if ( pwdLength < Password::MINIMUM_PASSWORD_LENGTH)
     {
@@ -74,29 +95,29 @@ bool Application::checkPwdLength(int pwdLength)
     return true;
 }
 
-void Application::displayErrorLength() {
+void Application::displayMessageErrorLength() {
     std::cout << "La longueur du mot de passe doit être au minimum de " << Password::MINIMUM_PASSWORD_LENGTH
               << " caractères." << std::endl;
 }
 
 void Application::displayHelp(char *progName) {
     std::cout << "Utilisation : " << progName << " [OPTION]" << std::endl;
-    std::cout << "Générer un mot de passe prononçable de 9 caractères minimum." << std::endl << std::endl;
+    std::cout << "Générer un mot de passe de 9 caractères minimum." << std::endl << std::endl;
     std::cout << "Options: " << std::endl;
     std::cout << "  -l N        générer un mot de passe de N caractères." << std::endl;
     std::cout << "  -n N        générer N mots de passe." << std::endl;
     std::cout << "  -h          afficher cette aide." << std::endl;
 }
 
-int Application::askForPwdLength() {
+int Application::askForPasswordLength() {
     int pwdLength = 0;
     do
     {
         std::cout << "Longueur du mot de passe à générer : " << std::endl;
         std::cin >> pwdLength;
-        if (!checkPwdLength(pwdLength))
+        if (!checkPasswordLength(pwdLength))
         {
-            displayErrorLength();
+            displayMessageErrorLength();
             pwdLength = -1;
         }
     } while (pwdLength == 0);
@@ -104,24 +125,41 @@ int Application::askForPwdLength() {
     return pwdLength;
 }
 
-void Application::runGenerator() {
-    // Initialisation du générateur de nombre aléatoires
+void Application::initializeGenerator(EngineName engineName)
+{
+    passwordGenerator->setPasswordLength(this->passwordLength);
+    try
+    {
+        passwordGenerator->setPasswordEngine(engineName);
 
-    for (int i = 0; i < m_nbPwd; ++i) {
-        m_listPwd.push_back(m_passwd->generateLongPassword(m_pwdLength));
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Erreur lors de l'initialisation du générateur:" << e.what() << '\n';
     }
 }
 
-void Application::displayPwdList() {
-    if (m_listPwd.empty())
+void Application::runGenerator() {
+
+    for (int count = 0; count < numberOfPasswords; ++count) {
+        passwordGenerator->generatePasswordWithEngine();
+        passwordsList.push_back(passwordGenerator->getPassword());
+    }
+}
+
+void Application::displayPasswordList() {
+    if (passwordsList.empty())
     {
         std::cout << "Aucun mot de passe généré." << std::endl;
         return;
     }
-    for (const auto& pwd: m_listPwd)
+    for (const auto& pwd: passwordsList)
     {
         std::cout << pwd << std::endl;
     }
 }
 
-
+std::vector<std::string> Application::getPasswordsList()
+{
+    return passwordsList;
+}
