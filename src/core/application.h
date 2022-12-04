@@ -38,7 +38,9 @@ class Application
 
         virtual ~Application();
     bool readCommandLineArguments(int argc, char **argv);
-    void initializeGenerator(EngineName engineName);
+    void selectPasswordEngine(char shortEngineName);
+    EngineName getPasswordEngine();
+    void initializeGenerator();
     void runGenerator();
     void displayPasswordList();
     std::vector<std::string> getPasswordsList();
@@ -58,6 +60,7 @@ protected:
 private:
     int passwordLength;
     int numberOfPasswords;
+    EngineName passwordEngine;
     Password *passwordGenerator;
 };
 

@@ -16,3 +16,9 @@ TEST_F(ApplicationTest, LengthOfPassword) {
     std::vector<std::string> passwordsList = app.getPasswordsList();
     EXPECT_EQ(passwordsList[0].length(), passwordLength);
 }
+
+TEST_F(ApplicationTest, SelectedEngine) {
+    char shortEngineName = 'A';
+    app.selectPasswordEngine(shortEngineName);
+    EXPECT_EQ(app.getPasswordEngine(), EngineName::Alphanumerique);
+}

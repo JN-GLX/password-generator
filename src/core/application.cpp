@@ -4,6 +4,7 @@ Application::Application() : passwordLength(9), numberOfPasswords(1)
 {
     //ctor
     passwordGenerator = new Password();
+    passwordEngine = EngineName::Standard;
  }
 
 Application::~Application()
@@ -14,7 +15,7 @@ Application::~Application()
 
 bool Application::readCommandLineArguments(int argc, char **argv)
 {
-    int option = getopt(argc, argv, "hl:n:");
+    int option = getopt(argc, argv, "hl:n:e:");
 
     while (option != -1) {
         switch (option) {
@@ -28,8 +29,11 @@ bool Application::readCommandLineArguments(int argc, char **argv)
             case 'n':
                 getNumberPasswordsFromOptArgs();
                 break;
+            case 'e':
+                selectPasswordEngine(optarg[0]);
+                break;
         }
-        option = getopt(argc, argv, "hl:n:");
+        option = getopt(argc, argv, "hl:n:e:");
     }
     return true;
 }
@@ -64,6 +68,7 @@ void Application::getNumberPasswordsFromOptArgs()
         setNumberOfPasswords(argNumberPasswords);
     }    
 }
+
 
 void Application::setNumberOfPasswords(int number)
 {
@@ -106,6 +111,7 @@ void Application::displayHelp(char *progName) {
     std::cout << "Options: " << std::endl;
     std::cout << "  -l N        générer un mot de passe de N caractères." << std::endl;
     std::cout << "  -n N        générer N mots de passe." << std::endl;
+    std::cout << "  -e S|A|P    moteur de génération: Standard|Alphanumérique|Prononçable." << std::endl;
     std::cout << "  -h          afficher cette aide." << std::endl;
 }
 
@@ -125,18 +131,40 @@ int Application::askForPasswordLength() {
     return pwdLength;
 }
 
-void Application::initializeGenerator(EngineName engineName)
+void Application::initializeGenerator()
 {
     passwordGenerator->setPasswordLength(this->passwordLength);
     try
     {
-        passwordGenerator->setPasswordEngine(engineName);
+        passwordGenerator->setPasswordEngine(passwordEngine);
 
     }
     catch(const std::exception& e)
     {
         std::cerr << "Erreur lors de l'initialisation du générateur:" << e.what() << '\n';
     }
+}
+
+void Application::selectPasswordEngine(char shortEngineName)
+{
+    switch (shortEngineName)
+    {
+    case 'A':
+        passwordEngine = EngineName::Alphanumerique;
+        break;
+    case 'S':
+        passwordEngine = EngineName::Standard;
+        break;
+    case 'P':
+        passwordEngine = EngineName::Prononçable;
+    default:        
+        break;
+    } 
+}
+
+EngineName Application::getPasswordEngine()
+{
+    return passwordEngine;
 }
 
 void Application::runGenerator() {
