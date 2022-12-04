@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.17)
-project(pronounceable_pwd)
+project(password-generator)
 
 set(CMAKE_CXX_STANDARD 11)
 SET(CMAKE_CXX_FLAGS "-g -O0 --coverage -fprofile-arcs -ftest-coverage")
 set(CMAKE_BUILD_TYPE Release)
+cmake_policy(SET CMP0135 NEW)
 
 include_directories(.)
 include_directories(src)
