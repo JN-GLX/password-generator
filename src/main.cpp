@@ -10,8 +10,8 @@ int main(int argc, char** argv)
     {
         return -1;
     };
-
-    app.initializeGenerator(EngineName::Prononçable);
+    
+    app.initializeGenerator();
     app.runGenerator();
     app.displayPasswordList();
     return 0;
