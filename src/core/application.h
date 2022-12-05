@@ -37,31 +37,27 @@ class Application
         }
 
         virtual ~Application();
-    bool readCommandLineArguments(int argc, char **argv);
-    void selectPasswordEngine(char shortEngineName);
-    EngineName getPasswordEngine();
-    void initializeGenerator();
-    void runGenerator();
-    void displayPasswordList();
-    std::vector<std::string> getPasswordsList();
-    void setNumberOfPasswords(int number);
-    int getNumberOfPasswords();
-    void setPasswordLength(int length);
-    int getPasswordLength();
-protected:
-    static bool checkPasswordLength(int pwdLength);
-    static void displayMessageErrorLength();
-    static void displayHelp(char *progName);
-    static int askForPasswordLength();
-    void getPwdLengthFromOptArgs();
-    void getNumberPasswordsFromOptArgs();
+        bool readCommandLineArguments(int argc, char **argv);
+        void selectPasswordEngineFromOptArgs(char shortEngineName);
+        EngineName getPasswordEngine();
+        void initializeGenerator();
+        void runGenerator();
+        void displayPasswordList();
+        std::vector<std::string> getPasswordsList();
+        void setNumberOfPasswords(int number);
+        int getNumberOfPasswords();
+        void setPasswordLength(int length);
+        int getPasswordLength();
+    protected:
+        void getPwdLengthFromOptArgs();
+        void getNumberPasswordsFromOptArgs();
 
-    std::vector<std::string> passwordsList;
-private:
-    int passwordLength;
-    int numberOfPasswords;
-    EngineName passwordEngine;
-    Password *passwordGenerator;
+        std::vector<std::string> passwordsList;
+    private:
+        int passwordLength;
+        int numberOfPasswords;
+        EngineName passwordEngine;
+        Password *passwordGenerator;
 };
 
 #endif // APPLICATION_H

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(password-generator)
 
 set(CMAKE_CXX_STANDARD 11)
-SET(CMAKE_CXX_FLAGS "-g -O0 --coverage -fprofile-arcs -ftest-coverage")
+SET(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
 set(CMAKE_BUILD_TYPE Release)
 cmake_policy(SET CMP0135 NEW)
 
