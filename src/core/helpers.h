@@ -3,7 +3,7 @@
 
 #include <string>
 #include <algorithm>
-
+#include <iostream>
 
 template<class F>
 void repeat(unsigned times, F callback) {
@@ -24,4 +24,13 @@ namespace StringUtils
     std::string buildLowerUpperCharSequence(const std::string& lowerString);
     std::string buildAsciiCharSequence(const char& firstAsciiChar, const char& lastAsciiChar);
 }
+
+void displayMessageErrorLength(int minimalPasswordLength);
+void displayHelp(char *progName);
+int askForPasswordLength(int minimalPasswordLength);
+bool checkPasswordLength(int pwdLength, int minimalPwdLength);
+
 #endif
+
+
+

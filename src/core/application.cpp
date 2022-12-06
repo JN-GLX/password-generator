@@ -1,4 +1,5 @@
 #include "application.h"
+#include "helpers.h"
 
 Application::Application() : passwordLength(9), numberOfPasswords(1)
 {
@@ -30,7 +31,7 @@ bool Application::readCommandLineArguments(int argc, char **argv)
                 getNumberPasswordsFromOptArgs();
                 break;
             case 'e':
-                selectPasswordEngine(optarg[0]);
+                selectPasswordEngineFromOptArgs(optarg[0]);
                 break;
         }
         option = getopt(argc, argv, "hl:n:e:");
@@ -47,11 +48,11 @@ void Application::getPwdLengthFromOptArgs()
     if (argPwdLength == 0) {
         setPasswordLength(Password::MINIMUM_PASSWORD_LENGTH);
     } else {
-        if (checkPasswordLength(argPwdLength)) {
+        if (checkPasswordLength(argPwdLength, Password::MINIMUM_PASSWORD_LENGTH)) {
             setPasswordLength(argPwdLength);
         } else {
-            displayMessageErrorLength();
-            setPasswordLength(askForPasswordLength());
+            displayMessageErrorLength(Password::MINIMUM_PASSWORD_LENGTH);
+            setPasswordLength(askForPasswordLength(Password::MINIMUM_PASSWORD_LENGTH));
         }
     }
 }
@@ -68,7 +69,6 @@ void Application::getNumberPasswordsFromOptArgs()
         setNumberOfPasswords(argNumberPasswords);
     }    
 }
-
 
 void Application::setNumberOfPasswords(int number)
 {
@@ -91,46 +91,6 @@ int Application::getPasswordLength()
     return(this->passwordLength);
 }
 
-bool Application::checkPasswordLength(int pwdLength)
-{
-    if ( pwdLength < Password::MINIMUM_PASSWORD_LENGTH)
-    {
-        return false;
-    }
-    return true;
-}
-
-void Application::displayMessageErrorLength() {
-    std::cout << "La longueur du mot de passe doit être au minimum de " << Password::MINIMUM_PASSWORD_LENGTH
-              << " caractères." << std::endl;
-}
-
-void Application::displayHelp(char *progName) {
-    std::cout << "Utilisation : " << progName << " [OPTION]" << std::endl;
-    std::cout << "Générer un mot de passe de 9 caractères minimum." << std::endl << std::endl;
-    std::cout << "Options: " << std::endl;
-    std::cout << "  -l N        générer un mot de passe de N caractères." << std::endl;
-    std::cout << "  -n N        générer N mots de passe." << std::endl;
-    std::cout << "  -e S|A|P    moteur de génération: Standard|Alphanumérique|Prononçable." << std::endl;
-    std::cout << "  -h          afficher cette aide." << std::endl;
-}
-
-int Application::askForPasswordLength() {
-    int pwdLength = 0;
-    do
-    {
-        std::cout << "Longueur du mot de passe à générer : " << std::endl;
-        std::cin >> pwdLength;
-        if (!checkPasswordLength(pwdLength))
-        {
-            displayMessageErrorLength();
-            pwdLength = -1;
-        }
-    } while (pwdLength == 0);
-
-    return pwdLength;
-}
-
 void Application::initializeGenerator()
 {
     passwordGenerator->setPasswordLength(this->passwordLength);
@@ -145,7 +105,7 @@ void Application::initializeGenerator()
     }
 }
 
-void Application::selectPasswordEngine(char shortEngineName)
+void Application::selectPasswordEngineFromOptArgs(char shortEngineName)
 {
     switch (shortEngineName)
     {
