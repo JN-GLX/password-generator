@@ -10,7 +10,7 @@
 using namespace StringUtils;
 using namespace RandomUtils;
 
-Password::Password() : passwordLength(MINIMUM_PASSWORD_LENGTH), engineName(EngineName::Standard)
+Password::Password() : passwordLength(DEFAULT_MINIMUM_PASSWORD_LENGTH), engineName(EngineName::Standard)
 {
     this->engineFactory = new EngineFactory();
 }

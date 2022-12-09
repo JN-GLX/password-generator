@@ -46,13 +46,13 @@ void Application::getPwdLengthFromOptArgs()
 
     argPwdLength = strtol(optarg, &pEnd, 10);
     if (argPwdLength == 0) {
-        setPasswordLength(Password::MINIMUM_PASSWORD_LENGTH);
+        setPasswordLength(DEFAULT_MINIMUM_PASSWORD_LENGTH);
     } else {
-        if (checkPasswordLength(argPwdLength, Password::MINIMUM_PASSWORD_LENGTH)) {
+        if (checkPasswordLength(argPwdLength, DEFAULT_MINIMUM_PASSWORD_LENGTH)) {
             setPasswordLength(argPwdLength);
         } else {
-            displayMessageErrorLength(Password::MINIMUM_PASSWORD_LENGTH);
-            setPasswordLength(askForPasswordLength(Password::MINIMUM_PASSWORD_LENGTH));
+            displayMessageErrorLength(DEFAULT_MINIMUM_PASSWORD_LENGTH);
+            setPasswordLength(askForPasswordLength(DEFAULT_MINIMUM_PASSWORD_LENGTH));
         }
     }
 }

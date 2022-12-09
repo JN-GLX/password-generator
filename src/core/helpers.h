@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <iostream>
 
+const int DEFAULT_MINIMUM_PASSWORD_LENGTH = 9;
+
 template<class F>
 void repeat(unsigned times, F callback) {
     while (times--) callback();
