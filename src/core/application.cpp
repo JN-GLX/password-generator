@@ -1,7 +1,7 @@
 #include "application.h"
 #include "helpers.h"
 
-Application::Application() : passwordLength(9), numberOfPasswords(1)
+Application::Application() : passwordLength(DEFAULT_MINIMUM_PASSWORD_LENGTH), numberOfPasswords(1)
 {
     //ctor
     passwordGenerator = new Password();
