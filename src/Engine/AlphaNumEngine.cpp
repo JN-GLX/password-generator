@@ -31,24 +31,3 @@ std::string AlphaNumEngine::generatePassword(int passwordLength) const
     return password;
 }
 
-std::string AlphaNumEngine::getRandomConsonants(int nbConsonants) const
-{
-    std::string sourceString = buildLowerUpperCharSequence(CONSONANTS);
-    std::string randomConsonants = getRandomCharSequence(sourceString, nbConsonants);
-
-    return randomConsonants;
-}
-
-std::string AlphaNumEngine::getRandomVowels(int nbVowels) const
-{
-    std::string sourceString = buildLowerUpperCharSequence(VOWELS);
-    std::string randomVowels = getRandomCharSequence(sourceString, nbVowels);
-
-    return randomVowels;
-}
-
-std::string AlphaNumEngine::getRandomDigits(int nbDigits) const
-{
-    std::string randomDigits = getRandomCharSequence(DIGITS, nbDigits);
-    return randomDigits;
-}
