@@ -11,7 +11,7 @@
 class ApplicationTest : public ::testing::Test {
   protected:
     void SetUp() override {
-        app.setPasswordLength(Password::MINIMUM_PASSWORD_LENGTH);
+        app.setPasswordLength(DEFAULT_MINIMUM_PASSWORD_LENGTH);
         app.initializeGenerator();
     }
     Application app;

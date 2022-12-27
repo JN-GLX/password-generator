@@ -39,8 +39,6 @@ public:
     void generatePasswordWithEngine();
     std::string getPassword();
     virtual ~Password();
-public:
-    static const int MINIMUM_PASSWORD_LENGTH = 9;
 private:
     int passwordLength;
     std::string password;

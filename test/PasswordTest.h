@@ -13,7 +13,7 @@ class PasswordTest : public ::testing::Test {
   protected:
     void SetUp() override {
         pwd.setPasswordEngine(EngineName::Standard);
-        pwd.setPasswordLength(Password::MINIMUM_PASSWORD_LENGTH);
+        pwd.setPasswordLength(DEFAULT_MINIMUM_PASSWORD_LENGTH);
     }
     Password pwd;
 };
