@@ -9,26 +9,6 @@
 
 using namespace std;
 
-TEST_F(PasswordTest, IsLengthCorrect) {
-    int pwdLength = 15;
-    pwd.setPasswordLength(pwdLength);
-
-    EXPECT_EQ(pwdLength, pwd.getPasswordLength());
-}
-
-TEST_F(PasswordTest, SetPasswordEngine) {
-    pwd.setPasswordEngine(EngineName::Alphanumerique);
-
-    EXPECT_EQ(pwd.getPasswordEngine(), EngineName::Alphanumerique);
-}
-
-TEST_F(PasswordTest, GetPassword) {
-    pwd.generatePasswordWithEngine();
-    string password = pwd.getPassword();
-
-    EXPECT_GE(password.length(), 0);
-}
-
 TEST_F(PasswordTest, HasGivenLength) {
     int pwdLength = 15;
     pwd.setPasswordLength(pwdLength);

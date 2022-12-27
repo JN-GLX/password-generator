@@ -33,9 +33,7 @@ public:
         setPasswordEngine(pwd.engineName);
     }
     void setPasswordEngine(EngineName selectedEngineName);
-    EngineName getPasswordEngine();
     void setPasswordLength(int length);
-    int getPasswordLength();
     void generatePasswordWithEngine();
     std::string getPassword();
     virtual ~Password();
@@ -43,7 +41,6 @@ private:
     int passwordLength;
     std::string password;
     EngineName engineName;
-    EngineFactory* engineFactory;
     Engine *passwordEngine;
 };
 #endif /* SRC_PASSWORD_H_ */
