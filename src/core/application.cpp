@@ -17,7 +17,6 @@ Application::~Application()
 bool Application::readCommandLineArguments(int argc, char **argv)
 {
     int option = getopt(argc, argv, "hl:n:e:");
-
     while (option != -1) {
         switch (option) {
             case 'h':
@@ -67,7 +66,7 @@ void Application::getNumberPasswordsFromOptArgs()
         setNumberOfPasswords(1);
     } else {
         setNumberOfPasswords(argNumberPasswords);
-    }    
+    }
 }
 
 void Application::setNumberOfPasswords(int number)
@@ -117,9 +116,9 @@ void Application::selectPasswordEngineFromOptArgs(char shortEngineName)
         break;
     case 'P':
         passwordEngine = EngineName::Prononçable;
-    default:        
+    default:
         break;
-    } 
+    }
 }
 
 EngineName Application::getPasswordEngine()
