@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)
 IF(DEFINED CMAKE_BUILD_TYPE AND CMAKE_VERSION VERSION_GREATER "3.17")
   SET_PROPERTY(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${CMAKE_CONFIGURATION_TYPES})
-ENDIF()  
+ENDIF()
 
 cmake_policy(SET CMP0135 NEW)
 
@@ -39,6 +39,7 @@ add_executable(pwgen
         src/Engine/AlphaNumEngine.cpp
         src/Engine/StandardEngine.cpp
         src/Engine/PronounceableEngine.cpp
+        src/Engine/NumericEngine.cpp
         src/Engine/randomutils.h
         src/Engine/randomutils.cpp
         src/main.cpp

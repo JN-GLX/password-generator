@@ -116,6 +116,10 @@ void Application::selectPasswordEngineFromOptArgs(char shortEngineName)
         break;
     case 'P':
         passwordEngine = EngineName::Prononçable;
+        break;
+    case 'N':
+        passwordEngine = EngineName::Numerique;
+        break;
     default:
         break;
     }

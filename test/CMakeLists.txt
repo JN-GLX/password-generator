@@ -16,6 +16,7 @@ add_executable(ApplicationTest ApplicationTest.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/AlphaNumEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/StandardEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/PronounceableEngine.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/NumericEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/randomutils.h
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/randomutils.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/core/helpers.h
@@ -30,6 +31,7 @@ add_executable(PasswordTest PasswordTest.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/AlphaNumEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/StandardEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/PronounceableEngine.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/NumericEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/randomutils.h
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/randomutils.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/core/helpers.h
@@ -42,6 +44,7 @@ add_executable(EngineTest EngineTest.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/AlphaNumEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/StandardEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/PronounceableEngine.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/NumericEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/randomutils.h
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/randomutils.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/core/helpers.h

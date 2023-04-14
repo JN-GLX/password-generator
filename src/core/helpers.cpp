@@ -3,7 +3,7 @@
 
 namespace StringUtils
 {
-    std:: string getUpperString(const std::string& lowerString) 
+    std:: string getUpperString(const std::string& lowerString)
     {
         std::string upperString = lowerString;
         std::transform(upperString.begin(), upperString.end(), upperString.begin(), ::toupper);
@@ -37,7 +37,7 @@ void displayHelp(char *progName) {
     std::cout << "Options: " << std::endl;
     std::cout << "  -l N        générer un mot de passe de N caractères." << std::endl;
     std::cout << "  -n N        générer N mots de passe." << std::endl;
-    std::cout << "  -e S|A|P    moteur de génération: Standard|Alphanumérique|Prononçable." << std::endl;
+    std::cout << "  -e S|A|P|N    moteur de génération: Standard|Alphanumérique|Prononçable|Numérique." << std::endl;
     std::cout << "  -h          afficher cette aide." << std::endl;
 }
 

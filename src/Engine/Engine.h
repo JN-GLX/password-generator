@@ -15,12 +15,14 @@
 static constexpr const char* STANDARD_ENGINE = "Standard";
 static constexpr const char* ALPHANUM_ENGINE = "Alphanumerique";
 static constexpr const char* PRONOUNCEABLE_ENGINE = "Prononçable";
+static constexpr const char* NUMERIC_ENGINE = "Numerique";
 
 enum class EngineName
 {
         Standard,
         Alphanumerique,
-        Prononçable
+        Prononçable,
+        Numerique
 };
 
 class Engine
@@ -29,6 +31,7 @@ public:
     Engine();
     virtual std::string generatePassword(int) const = 0;
     virtual ~Engine();
+    static const int MINIMUM_PASSWORD_LENGTH = 8;
 protected:
     std::string defaultSourceString;
 };
@@ -60,10 +63,20 @@ public:
     PronounceableEngine();
     virtual ~PronounceableEngine();
     std::string generatePassword(int length) const override;
+    static const int MINIMUM_PASSWORD_LENGTH = 9;
 private:
     int computeNumberOfPasses(int length) const;
     std::string generateLettersSequence() const;
-    static const int MINIMUM_PASSWORD_LENGTH = 9;
+};
+
+class NumericEngine: public AlphaNumEngine
+{
+public:
+    NumericEngine();
+    virtual ~NumericEngine();
+    std::string generatePassword(int length) const override;
+    static const int MINIMUM_PASSWORD_LENGTH = 6;
+private:
 };
 
 class EngineFactory
@@ -82,6 +95,9 @@ public:
         }break;
         case EngineName::Prononçable: {
             passwordEngine = new PronounceableEngine();
+        }break;
+        case EngineName::Numerique: {
+            passwordEngine = new NumericEngine();
         }break;
         default:
             break;
