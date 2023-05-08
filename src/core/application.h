@@ -40,6 +40,7 @@ class Application
         bool readCommandLineArguments(int argc, char **argv);
         void selectPasswordEngineFromOptArgs(char shortEngineName);
         EngineName getPasswordEngine();
+        bool checkMinPasswordLength(int passwordLength);
         void initializeGenerator();
         void runGenerator();
         void displayPasswordList();

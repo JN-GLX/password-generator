@@ -35,6 +35,7 @@ public:
     void setPasswordEngine(EngineName selectedEngineName);
     void setPasswordLength(int length);
     void generatePasswordWithEngine();
+    int getMinimumPasswordLength();
     std::string getPassword();
     virtual ~Password();
 private:

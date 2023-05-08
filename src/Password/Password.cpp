@@ -54,3 +54,8 @@ std::string Password::getPassword()
 {
     return password;
 }
+
+int Password::getMinimumPasswordLength()
+{
+    return passwordEngine->MINIMUM_PASSWORD_LENGTH;
+}

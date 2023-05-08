@@ -22,3 +22,10 @@ TEST_F(ApplicationTest, SelectedEngine) {
     app.selectPasswordEngineFromOptArgs(shortEngineName);
     EXPECT_EQ(app.getPasswordEngine(), EngineName::Alphanumerique);
 }
+
+TEST_F(ApplicationTest, CheckMinPasswordLenght) {
+    char shortEngineName = 'P';
+    int passwordLength = 9;
+    app.selectPasswordEngineFromOptArgs(shortEngineName);
+    EXPECT_EQ(app.checkMinPasswordLength(passwordLength),true);
+}

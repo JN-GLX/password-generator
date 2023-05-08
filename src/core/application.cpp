@@ -90,6 +90,11 @@ int Application::getPasswordLength()
     return(this->passwordLength);
 }
 
+bool Application::checkMinPasswordLength(int passwordLength)
+{
+    return(passwordLength >= passwordGenerator->getMinimumPasswordLength());
+}
+
 void Application::initializeGenerator()
 {
     passwordGenerator->setPasswordLength(this->passwordLength);
