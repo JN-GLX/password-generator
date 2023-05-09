@@ -61,4 +61,6 @@ class Application
         Password *passwordGenerator;
 };
 
+// const int DEFAULT_MINIMUM_PASSWORD_LENGTH = 6;
+
 #endif // APPLICATION_H

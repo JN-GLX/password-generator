@@ -4,7 +4,7 @@
 #include "gtest/gtest.h"
 #include "../src/Engine/Engine.h"
 #include "../src/Engine/randomutils.h"
-#include "../src/core/helpers.h"
+#include "../src/Engine/stringutils.h"
 
 const int MINIMAL_PASSWORD_LENGTH = 9;
 
@@ -17,10 +17,10 @@ class StandardEngineTest : public ::testing::Test {
         std::string password;
 };
 
-class AlphaNumEngineTest : public ::testing::Test 
+class AlphaNumEngineTest : public ::testing::Test
 {
     protected:
-        void SetUp() override 
+        void SetUp() override
         {
             password = alphanumPasswordEngine.generatePassword(MINIMAL_PASSWORD_LENGTH);
         }

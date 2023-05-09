@@ -8,6 +8,7 @@
 #include "PasswordTest.h"
 
 using namespace std;
+using namespace StringUtils;
 
 TEST_F(PasswordTest, HasGivenLength) {
     int pwdLength = 15;

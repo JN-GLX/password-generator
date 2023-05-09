@@ -10,7 +10,7 @@
 #include <chrono>
 #include <algorithm>
 #include "randomutils.h"
-#include "helpers.h"
+#include "stringutils.h"
 
 static constexpr const char* STANDARD_ENGINE = "Standard";
 static constexpr const char* ALPHANUM_ENGINE = "Alphanumerique";

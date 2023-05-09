@@ -17,7 +17,7 @@
 #include <chrono>
 #include <algorithm>
 
-#include "helpers.h"
+#include "stringutils.h"
 #include "randomutils.h"
 #include "Engine.h"
 
@@ -44,4 +44,7 @@ private:
     EngineName engineName;
     Engine *passwordEngine;
 };
+
+const int DEFAULT_MINIMUM_PASSWORD_LENGTH = 6;
+
 #endif /* SRC_PASSWORD_H_ */

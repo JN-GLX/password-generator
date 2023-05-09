@@ -42,6 +42,8 @@ add_executable(pwgen
         src/Engine/NumericEngine.cpp
         src/Engine/randomutils.h
         src/Engine/randomutils.cpp
+        src/Engine/stringutils.h
+        src/Engine/stringutils.cpp
         src/main.cpp
         version.h)
 
