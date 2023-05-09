@@ -17,9 +17,9 @@
 #include <chrono>
 #include <algorithm>
 
-#include "stringutils.h"
-#include "randomutils.h"
-#include "Engine.h"
+#include "../Engine/stringutils.h"
+#include "../Engine/randomutils.h"
+#include "../Engine/Engine.h"
 
 #ifndef SRC_PASSWORD_H_
 #define SRC_PASSWORD_H_
