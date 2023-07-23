@@ -20,6 +20,17 @@ namespace StringUtils
     static const int DEFAULT_FIRST_ASCII_CHAR = 33;
     static const int DEFAULT_LAST_ASCII_CHAR = 126;
 
+/* TODO : Remplacer les constantes par un enum + une fonction renvoyant la chaîne correspondante
+*/
+    enum class StringSet {
+        VOWELS,
+        CONSONANTS,
+        DIGITS,
+        PUNCTUATION,
+        SPECIALS,
+        CUSTOM
+    };
+
     std::string getUpperString(const std::string& lowerString);
     std::string buildLowerUpperCharSequence(const std::string& lowerString);
     std::string buildAsciiCharSequence(const char& firstAsciiChar, const char& lastAsciiChar);
