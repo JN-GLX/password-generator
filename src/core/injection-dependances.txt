@@ -1,0 +1,29 @@
+## Bing
+L'injection de dépendances est un principe de conception de logiciels qui fait partie des principes SOLID en programmation orientée objet. Il s'agit d'une forme de contrôle d'inversion (Inversion of Control, IoC) qui rend un système plus modulaire, plus testable et plus maintenable.
+L'idée de base de l'injection de dépendances est qu'une classe ne devrait pas être responsable de la création ou de la recherche de ses dépendances (c'est-à-dire les autres objets dont elle a besoin pour fonctionner). Au lieu de cela, ces dépendances devraient être "injectées" dans la classe par un code externe.
+Voici un exemple simple pour illustrer ce concept :
+
+public class Application {
+    private PasswordGenerator passwordGenerator;
+
+    // Sans injection de dépendances
+    public Application() {
+        this.passwordGenerator = new PasswordGenerator();
+    }
+}
+
+Dans cet exemple, la classe Application crée une nouvelle instance de PasswordGenerator dans son constructeur. Cela signifie que Application a une dépendance directe sur PasswordGenerator, ce qui peut rendre le code plus difficile à tester et à maintenir.
+Avec l'injection de dépendances, cela pourrait ressembler à ceci :
+
+public class Application {
+    private PasswordGenerator passwordGenerator;
+
+    // Avec injection de dépendances
+    public Application(PasswordGenerator passwordGenerator) {
+        this.passwordGenerator = passwordGenerator;
+    }
+}
+
+Dans cet exemple, une instance de PasswordGenerator est passée au constructeur de Application. Cela signifie que Application n'a pas besoin de savoir comment créer un PasswordGenerator, ce qui rend le code plus flexible et plus facile à tester.
+Il existe plusieurs façons d'implémenter l'injection de dépendances, notamment l'injection par constructeur (comme dans l'exemple ci-dessus), l'injection par setter et l'injection par interface.
+J'espère que cela vous aide à comprendre l'injection de dépendances ! N'hésitez pas si vous avez d'autres questions.

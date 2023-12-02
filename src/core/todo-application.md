@@ -1,0 +1,8 @@
+
+Séparation des préoccupations : Vous pourriez envisager de diviser la classe Application en plusieurs classes plus petites, chacune ayant une responsabilité unique. Par exemple, vous pourriez avoir une classe CommandLineParser pour gérer la lecture et l’analyse des arguments de la ligne de commande, une classe PasswordGenerator pour gérer la génération des mots de passe, et une classe Display pour gérer l’affichage des mots de passe.
+
+Utilisation de l’injection de dépendances : Au lieu de créer des instances de Password et Engine directement dans la classe Application, vous pourriez envisager d’utiliser l’injection de dépendances. Cela signifie que vous passeriez ces objets à la classe Application lors de sa création, ce qui rendrait votre code plus flexible et plus facile à tester.
+
+Regroupement des méthodes liées : Certaines de vos méthodes semblent être étroitement liées, comme setPasswordLength() et getPasswordLength(). Vous pourriez envisager de regrouper ces méthodes dans une classe séparée, comme PasswordSettings.
+
+Utilisation de l’encapsulation : Certaines de vos variables, comme passwordLength et numberOfPasswords, sont déclarées comme privées (-). C’est une bonne pratique en programmation orientée objet, car cela empêche l’accès direct à ces variables. Cependant, vous avez également des méthodes pour obtenir et définir ces variables (getPasswordLength(), setPasswordLength(), etc.), ce qui pourrait potentiellement violer le principe d’encapsulation. Vous pourriez envisager de revoir ces méthodes pour vous assurer qu’elles sont vraiment nécessaires.
