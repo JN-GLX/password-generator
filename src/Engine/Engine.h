@@ -42,8 +42,6 @@ public:
     StandardEngine();
     virtual ~StandardEngine();
     std::string generatePassword(int length) const override;
-private:
-    std::string buildAsciiSequence(char firstAsciiChar, char lastAsciiChar) const;
 };
 
 class AlphaNumEngine : public Engine
