@@ -17,9 +17,9 @@
 #include <chrono>
 #include <algorithm>
 
-#include "helpers.h"
-#include "randomutils.h"
-#include "Engine.h"
+#include "../Engine/stringutils.h"
+#include "../Engine/randomutils.h"
+#include "../Engine/Engine.h"
 
 #ifndef SRC_PASSWORD_H_
 #define SRC_PASSWORD_H_
@@ -33,17 +33,18 @@ public:
         setPasswordEngine(pwd.engineName);
     }
     void setPasswordEngine(EngineName selectedEngineName);
-    EngineName getPasswordEngine();
     void setPasswordLength(int length);
-    int getPasswordLength();
     void generatePasswordWithEngine();
+    int getMinimumPasswordLength();
     std::string getPassword();
     virtual ~Password();
 private:
     int passwordLength;
     std::string password;
     EngineName engineName;
-    EngineFactory* engineFactory;
     Engine *passwordEngine;
 };
+
+const int DEFAULT_MINIMUM_PASSWORD_LENGTH = 6;
+
 #endif /* SRC_PASSWORD_H_ */

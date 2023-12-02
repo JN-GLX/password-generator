@@ -10,17 +10,19 @@
 #include <chrono>
 #include <algorithm>
 #include "randomutils.h"
-#include "helpers.h"
+#include "stringutils.h"
 
 static constexpr const char* STANDARD_ENGINE = "Standard";
 static constexpr const char* ALPHANUM_ENGINE = "Alphanumerique";
 static constexpr const char* PRONOUNCEABLE_ENGINE = "Prononçable";
+static constexpr const char* NUMERIC_ENGINE = "Numerique";
 
 enum class EngineName
 {
         Standard,
         Alphanumerique,
-        Prononçable
+        Prononçable,
+        Numerique
 };
 
 class Engine
@@ -29,7 +31,7 @@ public:
     Engine();
     virtual std::string generatePassword(int) const = 0;
     virtual ~Engine();
-
+    static const int MINIMUM_PASSWORD_LENGTH = 8;
 protected:
     std::string defaultSourceString;
 };
@@ -40,9 +42,8 @@ public:
     StandardEngine();
     virtual ~StandardEngine();
     std::string generatePassword(int length) const override;
-protected:
+private:
     std::string buildAsciiSequence(char firstAsciiChar, char lastAsciiChar) const;
-    std::string defaultSourceString;
 };
 
 class AlphaNumEngine : public Engine
@@ -53,10 +54,7 @@ public:
     virtual ~AlphaNumEngine();
 
     std::string generatePassword(int length) const override;
-
-    std::string getRandomConsonants(int nbConsonants) const;
-    std::string getRandomVowels(int nbVowels) const;
-    std::string getRandomDigits(int nbDigits) const;
+protected:
 };
 
 class PronounceableEngine : public AlphaNumEngine
@@ -64,19 +62,24 @@ class PronounceableEngine : public AlphaNumEngine
 public:
     PronounceableEngine();
     virtual ~PronounceableEngine();
-
     std::string generatePassword(int length) const override;
-
-    std::string getRandomSpecials(int nbSpecials) const;
-    std::string generateLettersSequence() const;
-protected:
-    int computeNumberOfPasses(int length) const;
-    std::string defaultSourceString;
-private: 
     static const int MINIMUM_PASSWORD_LENGTH = 9;
+private:
+    int computeNumberOfPasses(int length) const;
+    std::string generateLettersSequence() const;
 };
 
-class EngineFactory 
+class NumericEngine: public AlphaNumEngine
+{
+public:
+    NumericEngine();
+    virtual ~NumericEngine();
+    std::string generatePassword(int length) const override;
+    static const int MINIMUM_PASSWORD_LENGTH = 6;
+private:
+};
+
+class EngineFactory
 {
 public:
     Engine* createEngine(EngineName engineName)
@@ -93,7 +96,10 @@ public:
         case EngineName::Prononçable: {
             passwordEngine = new PronounceableEngine();
         }break;
-        default:            
+        case EngineName::Numerique: {
+            passwordEngine = new NumericEngine();
+        }break;
+        default:
             break;
         }
         return passwordEngine;

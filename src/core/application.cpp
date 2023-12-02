@@ -17,7 +17,6 @@ Application::~Application()
 bool Application::readCommandLineArguments(int argc, char **argv)
 {
     int option = getopt(argc, argv, "hl:n:e:");
-
     while (option != -1) {
         switch (option) {
             case 'h':
@@ -67,7 +66,7 @@ void Application::getNumberPasswordsFromOptArgs()
         setNumberOfPasswords(1);
     } else {
         setNumberOfPasswords(argNumberPasswords);
-    }    
+    }
 }
 
 void Application::setNumberOfPasswords(int number)
@@ -89,6 +88,11 @@ void Application::setPasswordLength(int length)
 int Application::getPasswordLength()
 {
     return(this->passwordLength);
+}
+
+bool Application::checkMinPasswordLength(int passwordLength)
+{
+    return(passwordLength >= passwordGenerator->getMinimumPasswordLength());
 }
 
 void Application::initializeGenerator()
@@ -117,9 +121,13 @@ void Application::selectPasswordEngineFromOptArgs(char shortEngineName)
         break;
     case 'P':
         passwordEngine = EngineName::Prononçable;
-    default:        
         break;
-    } 
+    case 'N':
+        passwordEngine = EngineName::Numerique;
+        break;
+    default:
+        break;
+    }
 }
 
 EngineName Application::getPasswordEngine()

@@ -16,10 +16,13 @@ add_executable(ApplicationTest ApplicationTest.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/AlphaNumEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/StandardEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/PronounceableEngine.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/NumericEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/randomutils.h
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/randomutils.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/core/helpers.h
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/core/helpers.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/stringutils.h
+               ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/stringutils.cpp
 )
 
 add_executable(PasswordTest PasswordTest.cpp
@@ -30,10 +33,11 @@ add_executable(PasswordTest PasswordTest.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/AlphaNumEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/StandardEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/PronounceableEngine.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/NumericEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/randomutils.h
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/randomutils.cpp
-               ${CMAKE_CURRENT_SOURCE_DIR}/../src/core/helpers.h
-               ${CMAKE_CURRENT_SOURCE_DIR}/../src/core/helpers.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/stringutils.h
+               ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/stringutils.cpp
 )
 
 add_executable(EngineTest EngineTest.cpp
@@ -42,10 +46,11 @@ add_executable(EngineTest EngineTest.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/AlphaNumEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/StandardEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/PronounceableEngine.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/NumericEngine.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/randomutils.h
                ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/randomutils.cpp
-               ${CMAKE_CURRENT_SOURCE_DIR}/../src/core/helpers.h
-               ${CMAKE_CURRENT_SOURCE_DIR}/../src/core/helpers.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/stringutils.h
+               ${CMAKE_CURRENT_SOURCE_DIR}/../src/Engine/stringutils.cpp
 )
 
 target_link_libraries(PasswordTest gtest_main)

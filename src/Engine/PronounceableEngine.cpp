@@ -40,15 +40,6 @@ std::string PronounceableEngine::generateLettersSequence() const
     return letterSequence;
 }
 
-std::string PronounceableEngine::getRandomSpecials(int nbSpecials) const
-{
-    std::string sourceString = PUNCTUATION;
-    sourceString += SPECIALS;
-    std::string specialsString = getRandomCharSequence(sourceString, nbSpecials);
-
-    return specialsString;
-}
-
 int PronounceableEngine::computeNumberOfPasses(int length) const
 {
     int numberOfPasses = 0;

@@ -12,33 +12,24 @@ using namespace RandomUtils;
 
 Password::Password() : passwordLength(DEFAULT_MINIMUM_PASSWORD_LENGTH), engineName(EngineName::Standard)
 {
-    this->engineFactory = new EngineFactory();
+
 }
 
 Password::~Password()
 {
-    delete engineFactory;
+
 }
 
 void Password::setPasswordEngine(EngineName selectedEngineName)
 {
     engineName = selectedEngineName;
-    passwordEngine = engineFactory->createEngine(engineName);
-}
-
-EngineName Password::getPasswordEngine()
-{
-    return engineName;
+    EngineFactory engineFactory;
+    passwordEngine = engineFactory.createEngine(engineName);
 }
 
 void Password::setPasswordLength(int length)
 {
     passwordLength = length;
-}
-
-int Password::getPasswordLength()
-{
-    return passwordLength;
 }
 
 void Password::generatePasswordWithEngine()
@@ -62,4 +53,9 @@ void Password::generatePasswordWithEngine()
 std::string Password::getPassword()
 {
     return password;
+}
+
+int Password::getMinimumPasswordLength()
+{
+    return passwordEngine->MINIMUM_PASSWORD_LENGTH;
 }

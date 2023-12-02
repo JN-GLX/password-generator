@@ -40,6 +40,7 @@ class Application
         bool readCommandLineArguments(int argc, char **argv);
         void selectPasswordEngineFromOptArgs(char shortEngineName);
         EngineName getPasswordEngine();
+        bool checkMinPasswordLength(int passwordLength);
         void initializeGenerator();
         void runGenerator();
         void displayPasswordList();
@@ -59,5 +60,7 @@ class Application
         EngineName passwordEngine;
         Password *passwordGenerator;
 };
+
+// const int DEFAULT_MINIMUM_PASSWORD_LENGTH = 6;
 
 #endif // APPLICATION_H
