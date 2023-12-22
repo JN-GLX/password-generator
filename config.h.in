@@ -1,0 +1,6 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#define CMAKE_CXX_FLAGS "@CMAKE_CXX_FLAGS@"
+
+#endif // CONFIG_H

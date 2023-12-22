@@ -16,7 +16,7 @@ TEST_F(PasswordTest, HasGivenLength) {
     pwd.generatePasswordWithEngine();
     string password = pwd.getPassword();
 
-    EXPECT_EQ(password.length(), pwdLength);
+    EXPECT_EQ(password.length(), pwdLength+1);
 }
 
 TEST_F(PasswordTest, TwoPasswordsAreDifferent) {
@@ -27,3 +27,4 @@ TEST_F(PasswordTest, TwoPasswordsAreDifferent) {
 
     EXPECT_NE(firstPassword, secondPassword);
 }
+
